@@ -1,4 +1,13 @@
 <?php
+/**
+ * Boostraps the project.
+ *
+ * @package   HybridBreadcrumbs
+ * @author    Justin Tadlock <justintadlock@gmail.com>
+ * @copyright Copyright (c) 2018, Justin Tadlock
+ * @link      https://github.com/justintadlock/hybrid-breadcrumbs
+ * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ */
 
 # Bail if we're not in the WP environment.
 if ( ! defined( 'ABSPATH' ) ) {

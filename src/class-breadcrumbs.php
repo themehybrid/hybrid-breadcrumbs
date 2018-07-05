@@ -1,14 +1,55 @@
 <?php
+/**
+ * Breadcrumbs class.
+ *
+ * This is the primary project class for creating breadcrumbs.
+ *
+ * @package   HybridBreadcrumbs
+ * @author    Justin Tadlock <justintadlock@gmail.com>
+ * @copyright Copyright (c) 2018, Justin Tadlock
+ * @link      https://github.com/justintadlock/hybrid-breadcrumbs
+ * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ */
 
 namespace Hybrid\Breadcrumbs;
 
-class Breadcrumbs {
+use Hybrid\Breadcrumbs\Contracts\Breadcrumbs as BreadcrumbsContract;
 
+/**
+ * Breadcrumbs class.
+ *
+ * @since  1.0.0
+ * @access public
+ */
+class Breadcrumbs implements BreadcrumbsContract {
+
+	/**
+	 * The `Builder` object, which actually builds the array of breadcrumbs.
+	 *
+	 * @since  1.0.0
+	 * @access protected
+	 * @var    Builder
+	 */
 	protected $builder;
 
+	/**
+	 * The parsed arguments passed into the class.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @var    array
+	 */
 	public $args = [];
 
-	public function __construct( $args = [] ) {
+	/**
+	 * Creates a new breadcrumbs object.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @param  array  $args
+	 * @return void
+	 */
+	public function __construct( array $args = [] ) {
 
 		$defaults = [
 			'labels'          => [],
@@ -24,8 +65,8 @@ class Breadcrumbs {
 			'item_tag'        => 'li',
 			'container_class' => 'breadcrumbs',
 			'title_class'     => 'breadcrumbs__title',
-			'list_class'      => 'breadcrumbs__items',
-			'item_class'      => 'breadcrumbs__item'
+			'list_class'      => 'breadcrumbs__trail',
+			'item_class'      => 'breadcrumbs__crumb'
 		];
 
 		$this->args = wp_parse_args( $args, $defaults );
@@ -43,6 +84,13 @@ class Breadcrumbs {
 		$this->make();
 	}
 
+	/**
+	 * Returns an array of default labels.
+	 *
+	 * @since  1.0.0
+	 * @access protected
+	 * @return array
+	 */
 	protected function defaultLabels() {
 
 		return [
@@ -71,6 +119,13 @@ class Breadcrumbs {
 		];
 	}
 
+	/**
+	 * Returns an array of default post taxonomies.
+	 *
+	 * @since  1.0.0
+	 * @access protected
+	 * @return array
+	 */
 	protected function defaultPostTaxonomies() {
 
 		$defaults = [];
@@ -83,11 +138,25 @@ class Breadcrumbs {
 		return $defaults;
 	}
 
+	/**
+	 * Renders the breadcrumbs HTML output.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return void
+	 */
 	public function render() {
 
 		echo $this->fetch();
 	}
 
+	/**
+	 * Returns the breadcrumbs HTML output.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function fetch() {
 
 		$crumbs = $this->builder->all();
@@ -126,63 +195,101 @@ class Breadcrumbs {
 		return '';
 	}
 
+	/**
+	 * Creates a new builder object.
+	 *
+	 * @since  1.0.0
+	 * @access protected
+	 * @return void
+	 */
 	protected function make() {
 
 		$this->builder = new Builder( $this );
 	}
 
+	/**
+	 * Returns a specific option or `false` if the option doesn't exist.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @param  string  $name
+	 * @return mixed
+	 */
+	public function option( $name ) {
+
+		return isset( $this->args[ $name ] ) ? $this->args[ $name ] : false;
+	}
+
+	/**
+	 * Returns a specific label or an empty string if it doesn't exist.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @param  string  $name
+	 * @return string
+	 */
 	public function label( $name ) {
 
-		return isset( $this->args['labels'][ $name ] ) ? $this->args['labels'][ $name ] : '';
+		$labels = $this->option( 'labels' );
+
+		return isset( $labels[ $name ] ) ? $labels[ $name ] : '';
 	}
 
+	/**
+	 * Returns a specific post taxonomy or an empty string if one isn't set.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @param  string  $name
+	 * @return string
+	 */
 	public function postTaxonomy( $name ) {
 
-		return isset( $this->args['post_taxonomy'][ $name ] )
-		       ? $this->args['post_taxonomy'][ $name ]
-		       : '';
+		$taxes = $this->option( 'post_taxonomy' );
+
+		return isset( $taxes[ $name ] ) ? $taxes[ $name ] : '';
 	}
 
+	/**
+	 * Helper function for determining whether we're viewing a paginated page.
+	 *
+	 * @todo This should be moved to a helper function.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return bool
+	 */
+	public function isPaged() {
 
-		public function isNetworked() {
+		return is_paged() || 1 < get_query_var( 'page' ) || 1 < get_query_var( 'cpage' );
+	}
 
-			return is_multisite() && $this->args['network'];
-		}
+	/**
+	 * Gets post types by slug. This is needed because the `get_post_types()`
+	 * function doesn't exactly match the `has_archive` argument when it's
+	 * set as a string instead of a boolean.
+	 *
+	 * @todo This should be moved to a helper function.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @param  string  $slug
+	 * @return array
+	 */
+	public function getPostTypesBySlug( $slug ) {
 
-		public function showTitle() {
+		$return = [];
 
-			return $this->args['show_title'];
-		}
+		$post_types = get_post_types( [], 'objects' );
 
-		public function isPaged() {
+		foreach ( $post_types as $type ) {
 
-			return is_paged() || 1 < get_query_var( 'page' ) || 1 < get_query_var( 'cpage' );
-		}
+			if ( $slug === $type->has_archive || ( true === $type->has_archive && $slug === $type->rewrite['slug'] ) ) {
 
-		/**
-		 * Gets post types by slug. This is needed because the `get_post_types()`
-		 * function doesn't exactly match the `has_archive` argument when it's
-		 * set as a string instead of a boolean.
-		 *
-		 * @since  1.0.0
-		 * @access protected
-		 * @param  int    $slug  The post type archive slug to search for.
-		 * @return void
-		 */
-		public function getPostTypesBySlug( $slug ) {
-
-			$return = [];
-
-			$post_types = get_post_types( [], 'objects' );
-
-			foreach ( $post_types as $type ) {
-
-				if ( $slug === $type->has_archive || ( true === $type->has_archive && $slug === $type->rewrite['slug'] ) ) {
-
-					$return[] = $type;
-				}
+				$return[] = $type;
 			}
-
-			return $return;
 		}
+
+		return $return;
+	}
 }

@@ -6,7 +6,7 @@ class Home extends Crumb {
 
 	public function label() {
 
-		$network = $this->manager->isNetworked() && ! is_main_site();
+		$network = is_multisite() && $this->manager->option( 'network' ) && ! is_main_site();
 
 		return $network ? get_bloginfo( 'name' ) : $this->manager->label( 'home' );
 	}
