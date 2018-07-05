@@ -1,0 +1,27 @@
+{
+	"name"        : "justintadlock/hybrid-breadcrumbs",
+	"description" : "The tastiest breadrumbs. Mix with anything.",
+	"keywords"    : [ "wordpress" ],
+	"homepage"    : "https://github.com/justintadlock/hybrid-breadcrumbs",
+	"license"     : "GPL-2.0-or-later",
+	"authors"     : [
+		{
+			"name"     : "Justin Tadlock",
+			"email"    : "justintadlock@gmail.com",
+			"homepage" : "http://justintadlock.com",
+			"role"     : "Developer"
+		}
+	],
+	"support"     : {
+		"issues" : "https://github.com/justintadlock/hybrid-breadcrumbs/issues",
+		"forum"  : "https://themehybrid.com/board/topics"
+	},
+	"autoload"    : {
+		"files" : [
+			"src/bootstrap-breadcrumbs.php"
+		]
+	},
+	"require"     : {
+		"php" : ">=5.6"
+	}
+}
