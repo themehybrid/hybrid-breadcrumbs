@@ -14,6 +14,8 @@
 
 namespace Hybrid\Breadcrumbs\Build;
 
+use function Hybrid\Breadcrumbs\get_post_types_by_slug;
+
 /**
  * Path build sub-class.
  *
@@ -84,7 +86,7 @@ class Path extends Build {
 
 				// If the slug matches a post type, let's build
 				// that and break out of the loop.
-				} elseif ( $types = $this->manager->getPostTypesBySlug( $slug ) ) {
+				} elseif ( $types = get_post_types_by_slug( $slug ) ) {
 
 					$this->builder->build( 'PostType', [
 						'post_type' => $types[0]

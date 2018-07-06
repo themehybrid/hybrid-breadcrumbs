@@ -13,6 +13,8 @@
 
 namespace Hybrid\Breadcrumbs\Query;
 
+use function Hybrid\Breadcrumbs\is_paged_view;
+
 /**
  * Front page query sub-class.
  *
@@ -30,7 +32,7 @@ class FrontPage extends Query {
 	 */
 	public function make() {
 
-		if ( $this->manager->option( 'show_on_front' ) || $this->manager->isPaged() ) {
+		if ( $this->manager->option( 'show_on_front' ) || is_paged_view() ) {
 
 			// Build network crumbs.
 			$this->builder->build( 'Network' );

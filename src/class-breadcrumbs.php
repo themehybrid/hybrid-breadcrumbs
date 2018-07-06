@@ -249,47 +249,4 @@ class Breadcrumbs implements BreadcrumbsContract {
 
 		return isset( $taxes[ $name ] ) ? $taxes[ $name ] : '';
 	}
-
-	/**
-	 * Helper function for determining whether we're viewing a paginated page.
-	 *
-	 * @todo This should be moved to a helper function.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return bool
-	 */
-	public function isPaged() {
-
-		return is_paged() || 1 < get_query_var( 'page' ) || 1 < get_query_var( 'cpage' );
-	}
-
-	/**
-	 * Gets post types by slug. This is needed because the `get_post_types()`
-	 * function doesn't exactly match the `has_archive` argument when it's
-	 * set as a string instead of a boolean.
-	 *
-	 * @todo This should be moved to a helper function.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @param  string  $slug
-	 * @return array
-	 */
-	public function getPostTypesBySlug( $slug ) {
-
-		$return = [];
-
-		$post_types = get_post_types( [], 'objects' );
-
-		foreach ( $post_types as $type ) {
-
-			if ( $slug === $type->has_archive || ( true === $type->has_archive && $slug === $type->rewrite['slug'] ) ) {
-
-				$return[] = $type;
-			}
-		}
-
-		return $return;
-	}
 }

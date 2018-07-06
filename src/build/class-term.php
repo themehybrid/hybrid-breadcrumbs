@@ -13,6 +13,8 @@
 
 namespace Hybrid\Breadcrumbs\Build;
 
+use function Hybrid\Breadcrumbs\get_post_types_by_slug;
+
 /**
  * Term build sub-class.
  *
@@ -73,7 +75,7 @@ class Term extends Build {
 				foreach ( $matches as $slug ) {
 
 					// Get post types that match the rewrite slug.
-					$types = $this->manager->getPostTypesBySlug( $slug );
+					$types = get_post_types_by_slug( $slug );
 
 					if ( $types ) {
 
