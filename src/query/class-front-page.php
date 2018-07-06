@@ -1,18 +1,41 @@
 <?php
+/**
+ * Front page query class.
+ *
+ * Called to build breadcrumbs on the front page.
+ *
+ * @package   HybridBreadcrumbs
+ * @author    Justin Tadlock <justintadlock@gmail.com>
+ * @copyright Copyright (c) 2018, Justin Tadlock
+ * @link      https://github.com/justintadlock/hybrid-breadcrumbs
+ * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ */
 
 namespace Hybrid\Breadcrumbs\Query;
 
+/**
+ * Front page query sub-class.
+ *
+ * @since  1.0.0
+ * @access public
+ */
 class FrontPage extends Query {
 
+	/**
+	 * Builds the breadcrumbs.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return void
+	 */
 	public function make() {
 
-		// Only show front items if the 'show_on_front' argument is set to 'true'.
-		if ( $this->manager->args['show_on_front'] || $this->manager->isPaged() ) {
+		if ( $this->manager->option( 'show_on_front' ) || $this->manager->isPaged() ) {
 
 			// Build network crumbs.
 			$this->builder->build( 'Network' );
 
-			// Add site home link.
+			// Add site home crumb.
 			$this->builder->crumb( 'Home' );
 
 			// Build paged crumbs.

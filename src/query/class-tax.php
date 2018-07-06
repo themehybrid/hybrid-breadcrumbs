@@ -1,9 +1,33 @@
 <?php
+/**
+ * Taxonomy query class.
+ *
+ * Called to build breadcrumbs on taxonomy (term) archive pages.
+ *
+ * @package   HybridBreadcrumbs
+ * @author    Justin Tadlock <justintadlock@gmail.com>
+ * @copyright Copyright (c) 2018, Justin Tadlock
+ * @link      https://github.com/justintadlock/hybrid-breadcrumbs
+ * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ */
 
 namespace Hybrid\Breadcrumbs\Query;
 
+/**
+ * Taxonomy query sub-class.
+ *
+ * @since  1.0.0
+ * @access public
+ */
 class Tax extends Query {
 
+	/**
+	 * Builds the breadcrumbs.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return void
+	 */
 	public function make() {
 		global $wp_rewrite;
 
@@ -29,14 +53,15 @@ class Tax extends Query {
 			// Build path crumbs.
 			$this->builder->build( 'Path', [ 'path' => $taxonomy->rewrite['slug'] ] );
 
-			// Add post type archive if its 'has_archive' matches the taxonomy rewrite 'slug'.
+			// Add post type archive if its `has_archive` matches the
+			// taxonomy rewrite `slug`.
 			if ( $taxonomy->rewrite['slug'] ) {
 
 				$slug = trim( $taxonomy->rewrite['slug'], '/' );
 
-				// Deals with the situation if the slug has a '/' between multiple
-				// strings. For example, "movies/genres" where "movies" is the post
-				// type archive.
+				// Deals with the situation if the slug has a `/`
+				// between multiple strings. For example, `movies/genres`
+				// where `movies` is the post type archive.
 				$matches = explode( '/', $slug );
 
 				// If matches are found for the path.
@@ -48,7 +73,7 @@ class Tax extends Query {
 					// Loop through each of the path matches.
 					foreach ( $matches as $slug ) {
 
-						// Get public post types that match the rewrite slug.
+						// Get post types that match the rewrite slug.
 						$post_types = $this->manager->getPostTypesBySlug( $slug );
 
 						if ( $post_types ) {
@@ -58,8 +83,6 @@ class Tax extends Query {
 							] );
 
 							$done_post_type = true;
-
-							// Break out of the loop.
 							break;
 						}
 					}
@@ -75,7 +98,7 @@ class Tax extends Query {
 			] );
 		}
 
-		// If the taxonomy is hierarchical, list its parent terms.
+		// If the taxonomy is hierarchical, list the parent terms.
 		if ( is_taxonomy_hierarchical( $term->taxonomy ) && $term->parent ) {
 
 			$this->builder->build( 'TermAncestors', [ 'term' => $term ] );
