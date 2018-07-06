@@ -40,7 +40,7 @@ class Term extends Crumb {
 	public function label() {
 
 		$tax     = $this->term->taxonomy;
-		$term_id = $this->term->ID;
+		$term_id = $this->term->term_id;
 
 		if ( is_tax( $tax, $term_id ) || is_category( $term_id ) || is_tag( $term_id ) ) {
 
