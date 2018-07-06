@@ -1,17 +1,50 @@
 <?php
+/**
+ * Post hierarchy build class.
+ *
+ * Builds breadcrumbs primarily based on the post type rewrite settings of the
+ * given post.
+ *
+ * @package   HybridBreadcrumbs
+ * @author    Justin Tadlock <justintadlock@gmail.com>
+ * @copyright Copyright (c) 2018, Justin Tadlock
+ * @link      https://github.com/justintadlock/hybrid-breadcrumbs
+ * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ */
 
 namespace Hybrid\Breadcrumbs\Build;
 
+/**
+ * Post hierarchy build sub-class.
+ *
+ * @since  1.0.0
+ * @access public
+ */
 class PostHierarchy extends Build {
 
+	/**
+	 * Post object.
+	 *
+	 * @since  1.0.0
+	 * @access protected
+	 * @var    \WP_Post
+	 */
 	protected $post;
 
+	/**
+	 * Builds the breadcrumbs.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return void
+	 */
 	public function make() {
 
 		// Get the post type.
 		$type = get_post_type_object( get_post_type( $this->post->ID ) );
 
-		// If this is the 'post' post type, get the rewrite front items and map the rewrite tags.
+		// If this is the 'post' post type, get the rewrite front items,
+		// map the rewrite tags, and bail early.
 		if ( 'post' === $type->name ) {
 
 			// Add $wp_rewrite->front to the trail.
@@ -23,20 +56,25 @@ class PostHierarchy extends Build {
 				'path' => get_option( 'permalink_structure' )
 			] );
 
+			return;
+		}
+
+		// Get the rewrite variable.
+		$rewrite = $type->rewrite;
+
 		// If the post type has rewrite rules.
-		} elseif ( false !== $type->rewrite ) {
+		if ( $rewrite ) {
 
 			// Build the rewrite front crumbs.
-			if ( $type->rewrite['with_front'] ) {
+			if ( $rewrite['with_front'] ) {
+
 				$this->builder->build( 'RewriteFront' );
 			}
 
 			// If there's a path, check for parents.
-			if ( ! empty( $type->rewrite['slug'] ) ) {
+			if ( $rewrite['slug'] ) {
 
-				$this->builder->build( 'Path', [
-					'path' => $type->rewrite['slug']
-				] );
+				$this->builder->build( 'Path', [ 'path' => $rewrite['slug'] ] );
 			}
 		}
 
@@ -47,11 +85,11 @@ class PostHierarchy extends Build {
 		}
 
 		// Map the rewrite tags if there's a `%` in the slug.
-		if ( 'post' !== $type->name && ! empty( $type->rewrite['slug'] ) && false !== strpos( $type->rewrite['slug'], '%' ) ) {
+		if ( $rewrite && false !== strpos( $rewrite['slug'], '%' ) ) {
 
 			$this->builder->build( 'MapRewriteTags', [
 				'post' => $this->post,
-				'path' => $type->rewrite['slug']
+				'path' => $rewrite['slug']
 			] );
 		}
 	}

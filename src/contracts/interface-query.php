@@ -2,7 +2,7 @@
 /**
  * Query interface.
  *
- * Defines the interface that querey classes must use.
+ * Defines the interface that query classes must use.
  *
  * @package   HybridBreadcrumbs
  * @author    Justin Tadlock <justintadlock@gmail.com>

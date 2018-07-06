@@ -1,14 +1,56 @@
 <?php
+/**
+ * Map rewrite tags build class.
+ *
+ * This class accepts a permalink structure and attempts to map any rewrite tags
+ * like `%tag%` to a breadcrumb. This is used with any post type.  It maps the
+ * core WP `%year%`, `%monthnum%`, `%day%`, and `%author` tags. It will also map
+ * any taxonomy tags.
+ *
+ * @package   HybridBreadcrumbs
+ * @author    Justin Tadlock <justintadlock@gmail.com>
+ * @copyright Copyright (c) 2018, Justin Tadlock
+ * @link      https://github.com/justintadlock/hybrid-breadcrumbs
+ * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ */
 
 namespace Hybrid\Breadcrumbs\Build;
 
 use WP_User;
 
+/**
+ * Map rewrite tags build sub-class.
+ *
+ * @since  1.0.0
+ * @access public
+ */
 class MapRewriteTags extends Build {
 
+	/**
+	 * Post object.
+	 *
+	 * @since  1.0.0
+	 * @access protected
+	 * @var    \WP_Post
+	 */
 	protected $post;
+
+	/**
+	 * Permalink structure or path with possible `%tag%` names in it.
+	 *
+	 * @since  1.0.0
+	 * @access protected
+	 * @var    string
+	 */
 	protected $path = '';
 
+	/**
+	 * Builds the breadcrumbs.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return void
+	 */
 	public function make() {
 
 		// Trim '/' from both sides of `$this->path`.

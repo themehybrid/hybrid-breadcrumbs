@@ -1,14 +1,45 @@
 <?php
+/**
+ * Path build class.
+ *
+ * Builds breadcrumbs based on a given path by attempting to find a post object
+ * within that path.
+ *
+ * @package   HybridBreadcrumbs
+ * @author    Justin Tadlock <justintadlock@gmail.com>
+ * @copyright Copyright (c) 2018, Justin Tadlock
+ * @link      https://github.com/justintadlock/hybrid-breadcrumbs
+ * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ */
 
 namespace Hybrid\Breadcrumbs\Build;
 
+/**
+ * Path build sub-class.
+ *
+ * @since  1.0.0
+ * @access public
+ */
 class Path extends Build {
 
+	/**
+	 * Path to search.
+	 *
+	 * @since  1.0.0
+	 * @access protected
+	 * @var    string
+	 */
 	protected $path = '';
 
+	/**
+	 * Builds the breadcrumbs.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return void
+	 */
 	public function make() {
 
-		// Trim '/' off $this->path in case we just got a simple '/' instead of a real path.
 		$path = trim( $this->path, '/' );
 
 		// If there's no path, return.
@@ -21,11 +52,7 @@ class Path extends Build {
 
 		// If the path is a post, run the parent crumbs and bail early.
 		if ( $post ) {
-
-			$this->builder->build( 'PostAncestors', [
-				'post' => $post
-			] );
-
+			$this->builder->build( 'PostAncestors', [ 'post' => $post ] );
 			return;
 		}
 
@@ -35,7 +62,8 @@ class Path extends Build {
 		// If matches are found for the path.
 		if ( $matches ) {
 
-			// Reverse the array of matches to search for posts in the proper order.
+			// Reverse the array of matches to search for posts in
+			// the proper order.
 			$matches = array_reverse( $matches );
 
 			// Loop through each of the path matches.
@@ -44,7 +72,8 @@ class Path extends Build {
 				// Get the parent post by the given path.
 				$post = get_page_by_path( $slug );
 
-				// If a parent post is found, set the $post_id and break out of the loop.
+				// If a parent post is found, set the $post_id
+				// and break out of the loop.
 				if ( ! empty( $post ) && 0 < $post->ID ) {
 
 					$this->builder->build( 'PostAncestors', [
@@ -53,6 +82,8 @@ class Path extends Build {
 
 					break;
 
+				// If the slug matches a post type, let's build
+				// that and break out of the loop.
 				} elseif ( $types = $this->manager->getPostTypesBySlug( $slug ) ) {
 
 					$this->builder->build( 'PostType', [

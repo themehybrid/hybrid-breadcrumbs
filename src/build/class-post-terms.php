@@ -1,12 +1,51 @@
 <?php
+/**
+ * Post terms build class.
+ *
+ * Builds breadcrumbs based on the given taxonomy for the post.
+ *
+ * @package   HybridBreadcrumbs
+ * @author    Justin Tadlock <justintadlock@gmail.com>
+ * @copyright Copyright (c) 2018, Justin Tadlock
+ * @link      https://github.com/justintadlock/hybrid-breadcrumbs
+ * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ */
 
 namespace Hybrid\Breadcrumbs\Build;
 
+/**
+ * Post terms build sub-class.
+ *
+ * @since  1.0.0
+ * @access public
+ */
 class PostTerms extends Build {
 
+	/**
+	 * Post object.
+	 *
+	 * @since  1.0.0
+	 * @access protected
+	 * @var    \WP_Post
+	 */
 	protected $post;
+
+	/**
+	 * Taxonomy slug.
+	 *
+	 * @since  1.0.0
+	 * @access protected
+	 * @var    string
+	 */
 	protected $taxonomy;
 
+	/**
+	 * Builds the breadcrumbs.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return void
+	 */
 	public function make() {
 
 		// Get the post type.
