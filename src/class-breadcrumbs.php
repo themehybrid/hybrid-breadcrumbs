@@ -8,7 +8,7 @@
  * @author    Justin Tadlock <justintadlock@gmail.com>
  * @copyright Copyright (c) 2018, Justin Tadlock
  * @link      https://github.com/justintadlock/hybrid-breadcrumbs
- * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * @license   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
 namespace Hybrid\Breadcrumbs;
@@ -190,7 +190,10 @@ class Breadcrumbs implements BreadcrumbsContract {
 				}
 
 				// Filter out any unwanted HTML from the label.
-				$item = wp_kses( $crumb->label(), $allowed_html );
+				$label = sprintf(
+					'<span itemprop="name">%s</span>',
+					wp_kses( $crumb->label(), $allowed_html )
+				);
 
 				// Get the crumb URL.
 				$url = $crumb->url();
@@ -198,23 +201,36 @@ class Breadcrumbs implements BreadcrumbsContract {
 				// Wrap the label with a link if the crumb has
 				// one and this isn't the last item.
 				if ( $url && $i !== $count  ) {
-					$item = sprintf( '<a href="%s">%s</a>', esc_url( $url ), $item );
+
+					$item = sprintf(
+						'<a href="%s" itemprop="item">%s</a>',
+						esc_url( $url ),
+						$label
+					);
+
+				} else {
+
+					$item = sprintf(
+						'<span itemprop="item">%s</span>',
+						$label
+					);
 				}
 
 				// Build the list item.
 				$list .= sprintf(
-					'<%1$s class="%2$s">%3$s</%1$s>',
+					'<%1$s class="%2$s" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">%3$s</%1$s>',
 					tag_escape( $this->option( 'item_tag' ) ),
 					esc_attr( $this->option( 'item_class' ) ),
 					$item
 				);
+
 
 				++$i;
 			}
 
 			// Build the list HTML.
 			$list = sprintf(
-				'<%1$s class="%2$s">%3$s</%1$s>',
+				'<%1$s class="%2$s" itemscope itemtype="https://schema.org/BreadcrumbList">%3$s</%1$s>',
 				tag_escape( $this->option( 'list_tag' ) ),
 				esc_attr( $this->option( 'list_class' ) ),
 				$list
@@ -233,9 +249,10 @@ class Breadcrumbs implements BreadcrumbsContract {
 
 			// Build out the final breadcrumbs trail HTML.
 			$html = sprintf(
-				'<%1$s class="%2$s">%3$s%4$s</%1$s>',
+				'<%1$s class="%2$s" role="navigation" aria-label="%3$s" itemprop="breadcrumb">%4$s%5$s</%1$s>',
 				tag_escape( $this->option( 'container_tag' ) ),
 				esc_attr( $this->option( 'container_class' ) ),
+				esc_attr( $this->label( 'aria_label' ) ),
 				$title,
 				$list
 			);
