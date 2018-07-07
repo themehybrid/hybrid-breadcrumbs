@@ -30,7 +30,7 @@ class Breadcrumbs implements BreadcrumbsContract {
 	 * @access protected
 	 * @var    Builder
 	 */
-	protected $builder;
+	protected $builder = null;
 
 	/**
 	 * The parsed arguments passed into the class.
@@ -80,8 +80,6 @@ class Breadcrumbs implements BreadcrumbsContract {
 			$this->args['labels'],
 			$this->defaultLabels()
 		);
-
-		$this->make();
 	}
 
 	/**
@@ -161,6 +159,10 @@ class Breadcrumbs implements BreadcrumbsContract {
 
 		$html = $list = $title = '';
 
+		// Creates breadcrumbs.
+		$this->make();
+
+		// Get an array of all the available breadcrumbs from the builder.
 		$crumbs = $this->builder->all();
 
 		// HTML allowed in labels. Everything else gets stripped out.
@@ -224,7 +226,6 @@ class Breadcrumbs implements BreadcrumbsContract {
 					$item
 				);
 
-
 				++$i;
 			}
 
@@ -272,7 +273,14 @@ class Breadcrumbs implements BreadcrumbsContract {
 	 */
 	protected function make() {
 
-		$this->builder = new Builder( $this );
+		if ( is_null( $this->builder ) ) {
+
+			// Creates a new builder object.
+			$this->builder = new Builder( $this );
+
+			// Tell the builder to make new breadcrumbs.
+			$this->builder->make();
+		}
 	}
 
 	/**

@@ -62,4 +62,14 @@ interface Builder {
 	 * @return array
 	 */
 	public function all();
+
+	/**
+	 * Builds the breadcrumbs. This will be called from outside the class to
+	 * initiate the breadcrumb build.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return void
+	 */
+	public function make();
 }

@@ -54,8 +54,6 @@ class Builder implements BuilderContract {
 	public function __construct( Breadcrumbs $manager ) {
 
 		$this->manager = $manager;
-
-		$this->make();
 	}
 
 	/**
@@ -131,7 +129,7 @@ class Builder implements BuilderContract {
 	 * @access public
 	 * @return void
 	 */
-	protected function make() {
+	public function make() {
 
 		// This may not follow any sort of standards-based code
 		// formatting rules, but you can damn well read it better!
