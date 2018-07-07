@@ -12,7 +12,7 @@
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-namespace Hybrid\Breadcrumbs;
+namespace Hybrid\Breadcrumbs\Core;
 
 use Hybrid\Breadcrumbs\Contracts\Breadcrumbs;
 use Hybrid\Breadcrumbs\Contracts\Builder as BuilderContract;
@@ -67,7 +67,7 @@ class Builder implements BuilderContract {
 	 */
 	public function query( $type, array $data = [] ) {
 
-		$class = __NAMESPACE__ . "\\Query\\{$type}";
+		$class = "\\Hybrid\\Breadcrumbs\\Query\\{$type}";
 
 		$query = new $class( $this, $this->manager, $data );
 
@@ -85,7 +85,7 @@ class Builder implements BuilderContract {
 	 */
 	public function build( $type, array $data = [] ) {
 
-		$class = __NAMESPACE__ . "\\Build\\{$type}";
+		$class = "\\Hybrid\\Breadcrumbs\\Build\\{$type}";
 
 		$build = new $class( $this, $this->manager, $data );
 
@@ -103,7 +103,7 @@ class Builder implements BuilderContract {
 	 */
 	public function crumb( $type, array $data = [] ) {
 
-		$class = __NAMESPACE__ . "\\Crumb\\{$type}";
+		$class =  "\\Hybrid\\Breadcrumbs\\Crumb\\{$type}";
 
 		$this->crumbs[] = new $class( $this, $this->manager, $data );
 	}

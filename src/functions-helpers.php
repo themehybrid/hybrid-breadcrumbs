@@ -13,6 +13,8 @@
 
 namespace Hybrid\Breadcrumbs;
 
+use Hybrid\Breadcrumbs\Core\Breadcrumbs;
+
 /**
  * Returns a new breadcrumbs object.
  *

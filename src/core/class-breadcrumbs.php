@@ -11,7 +11,7 @@
  * @license   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-namespace Hybrid\Breadcrumbs;
+namespace Hybrid\Breadcrumbs\Core;
 
 use Hybrid\Breadcrumbs\Contracts\Breadcrumbs as BreadcrumbsContract;
 
