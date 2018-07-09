@@ -20,7 +20,7 @@ namespace Hybrid\Breadcrumbs\Query;
  * @since  1.0.0
  * @access public
  */
-class PostTypeArchive extends Query {
+class PostTypeArchive extends Base {
 
 	/**
 	 * Builds the breadcrumbs.

@@ -19,7 +19,7 @@ namespace Hybrid\Breadcrumbs\Build;
  * @since  1.0.0
  * @access public
  */
-class Network extends Build {
+class Network extends Base {
 
 	/**
 	 * Builds the breadcrumbs.

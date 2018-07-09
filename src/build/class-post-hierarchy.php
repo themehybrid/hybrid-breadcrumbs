@@ -20,7 +20,7 @@ namespace Hybrid\Breadcrumbs\Build;
  * @since  1.0.0
  * @access public
  */
-class PostHierarchy extends Build {
+class PostHierarchy extends Base {
 
 	/**
 	 * Post object.

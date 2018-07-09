@@ -24,7 +24,7 @@ use WP_User;
  * @since  1.0.0
  * @access public
  */
-class MapRewriteTags extends Build {
+class MapRewriteTags extends Base {
 
 	/**
 	 * Post object.

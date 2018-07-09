@@ -19,7 +19,7 @@ namespace Hybrid\Breadcrumbs\Query;
  * @since  1.0.0
  * @access public
  */
-class Minute extends Query {
+class Minute extends Base {
 
 	/**
 	 * Builds the breadcrumbs.

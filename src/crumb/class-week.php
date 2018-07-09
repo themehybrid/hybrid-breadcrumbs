@@ -19,7 +19,7 @@ namespace Hybrid\Breadcrumbs\Crumb;
  * @since  1.0.0
  * @access public
  */
-class Week extends Crumb {
+class Week extends Base {
 
 	/**
 	 * Returns a label for the crumb.

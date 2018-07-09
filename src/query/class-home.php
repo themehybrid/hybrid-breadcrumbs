@@ -19,7 +19,7 @@ namespace Hybrid\Breadcrumbs\Query;
  * @since  1.0.0
  * @access public
  */
-class Home extends Query {
+class Home extends Base {
 
 	/**
 	 * Builds the breadcrumbs.

@@ -23,7 +23,7 @@ namespace Hybrid\Breadcrumbs\Build;
  * @since  1.0.0
  * @access public
  */
-class RewriteFront extends Build {
+class RewriteFront extends Base {
 
 	/**
 	 * Builds the breadcrumbs.

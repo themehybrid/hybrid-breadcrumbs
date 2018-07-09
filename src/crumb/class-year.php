@@ -19,7 +19,7 @@ namespace Hybrid\Breadcrumbs\Crumb;
  * @since  1.0.0
  * @access public
  */
-class Year extends Crumb {
+class Year extends Base {
 
 	/**
 	 * Post object.

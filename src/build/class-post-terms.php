@@ -19,7 +19,7 @@ namespace Hybrid\Breadcrumbs\Build;
  * @since  1.0.0
  * @access public
  */
-class PostTerms extends Build {
+class PostTerms extends Base {
 
 	/**
 	 * Post object.

@@ -21,7 +21,7 @@ use function Hybrid\Breadcrumbs\get_post_types_by_slug;
  * @since  1.0.0
  * @access public
  */
-class Term extends Build {
+class Term extends Base {
 
 	/**
 	 * Term object.

@@ -21,7 +21,7 @@ namespace Hybrid\Breadcrumbs\Build;
  * @since  1.0.0
  * @access public
  */
-class Paged extends Build {
+class Paged extends Base {
 
 	/**
 	 * Post object.

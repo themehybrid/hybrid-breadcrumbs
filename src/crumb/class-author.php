@@ -19,7 +19,7 @@ namespace Hybrid\Breadcrumbs\Crumb;
  * @since  1.0.0
  * @access public
  */
-class Author extends Crumb {
+class Author extends Base {
 
 	/**
 	 * User object.

@@ -19,7 +19,7 @@ namespace Hybrid\Breadcrumbs\Crumb;
  * @since  1.0.0
  * @access public
  */
-class Network extends Crumb {
+class Network extends Base {
 
 	/**
 	 * Returns a label for the crumb.

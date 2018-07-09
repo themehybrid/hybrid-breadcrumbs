@@ -21,7 +21,7 @@ namespace Hybrid\Breadcrumbs\Query;
  * @since  1.0.0
  * @access public
  */
-class Paged extends Query {
+class Paged extends Base {
 
 	/**
 	 * Builds the breadcrumbs.

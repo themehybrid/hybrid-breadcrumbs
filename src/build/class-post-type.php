@@ -19,7 +19,7 @@ namespace Hybrid\Breadcrumbs\Build;
  * @since  1.0.0
  * @access public
  */
-class PostType extends Build {
+class PostType extends Base {
 
 	/**
 	 * Post type slug.

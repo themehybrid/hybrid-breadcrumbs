@@ -21,7 +21,7 @@ use function Hybrid\Breadcrumbs\is_paged_view;
  * @since  1.0.0
  * @access public
  */
-class FrontPage extends Query {
+class FrontPage extends Base {
 
 	/**
 	 * Builds the breadcrumbs.

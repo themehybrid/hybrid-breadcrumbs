@@ -18,7 +18,7 @@ namespace Hybrid\Breadcrumbs\Build;
 
 use Hybrid\Breadcrumbs\Contracts\Breadcrumbs;
 use Hybrid\Breadcrumbs\Contracts\Builder;
-use Hybrid\Breadcrumbs\Contracts\Build as BuildContract;
+use Hybrid\Breadcrumbs\Contracts\Build;
 
 /**
  * Base build class.
@@ -26,7 +26,7 @@ use Hybrid\Breadcrumbs\Contracts\Build as BuildContract;
  * @since  1.0.0
  * @access public
  */
-class Build implements BuildContract {
+abstract class Base implements Build {
 
 	/**
 	 * Builder object.
@@ -79,5 +79,5 @@ class Build implements BuildContract {
 	 * @access public
 	 * @return void
 	 */
-	public function make() {}
+	abstract public function make();
 }

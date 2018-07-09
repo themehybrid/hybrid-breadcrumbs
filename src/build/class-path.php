@@ -22,7 +22,7 @@ use function Hybrid\Breadcrumbs\get_post_types_by_slug;
  * @since  1.0.0
  * @access public
  */
-class Path extends Build {
+class Path extends Base {
 
 	/**
 	 * Path to search.

@@ -21,7 +21,7 @@ use WP_User;
  * @since  1.0.0
  * @access public
  */
-class Author extends Query {
+class Author extends Base {
 
 	/**
 	 * Builds the breadcrumbs.

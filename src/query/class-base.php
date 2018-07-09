@@ -1,11 +1,11 @@
 <?php
 /**
- * Crumb class.
+ * Query class.
  *
- * This is the base class, which should be sub-classed, for creating a specific
- * breadcrumb item. Each sub-class should, at minimum, have a label. Not all
- * will necessarily have a URL if they're only designed to be the final crumb in
- * the trail.
+ * This is the base class, which should be sub-classed, for building breadcrumbs
+ * based on the current query. Each query class is based on the current WP main
+ * query. Each class can call another query class, one or more build classes, or
+ * one or more crumb classes.
  *
  * @package   HybridBreadcrumbs
  * @author    Justin Tadlock <justintadlock@gmail.com>
@@ -14,19 +14,19 @@
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-namespace Hybrid\Breadcrumbs\Crumb;
+namespace Hybrid\Breadcrumbs\Query;
 
 use Hybrid\Breadcrumbs\Contracts\Breadcrumbs;
 use Hybrid\Breadcrumbs\Contracts\Builder;
-use Hybrid\Breadcrumbs\Contracts\Crumb as CrumbContract;
+use Hybrid\Breadcrumbs\Contracts\Query;
 
 /**
- * Base crumb class.
+ * Base query class.
  *
  * @since  1.0.0
  * @access public
  */
-class Crumb implements CrumbContract {
+abstract class Base implements Query {
 
 	/**
 	 * Builder object.
@@ -47,7 +47,7 @@ class Crumb implements CrumbContract {
 	protected $manager;
 
 	/**
-	 * Creates a new crumb object. Any data passed in within the `$data`
+	 * Creates a new query object. Any data passed in within the `$data`
 	 * array will be automatically assigned to any existing properties, which
 	 * can be useful for sub-classes that have custom properties.
 	 *
@@ -72,24 +72,11 @@ class Crumb implements CrumbContract {
 	}
 
 	/**
-	 * Returns a label for the crumb.
+	 * Override this method in sub-classes to build out breadcrumbs.
 	 *
 	 * @since  1.0.0
 	 * @access public
-	 * @return string
+	 * @return void
 	 */
-	public function label() {
-		return '';
-	}
-
-	/**
-	 * Returns a URL for the crumb.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return string
-	 */
-	public function url() {
-		return '';
-	}
+	abstract public function make();
 }
