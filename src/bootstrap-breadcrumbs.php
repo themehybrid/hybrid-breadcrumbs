@@ -9,11 +9,6 @@
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-# Bail if we're not in the WP environment.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
 # Check if the framework has been bootstrapped. If not, load the bootstrap files
 # and get the framework set up.
 if ( ! defined( 'HYBRID_BREADCRUMBS_BOOTSTRAPPED' ) ) {
