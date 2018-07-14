@@ -38,7 +38,7 @@ spl_autoload_register( function( $class ) {
 
 		// Split pieces by uppercase letter.  Assume sub-namespaces and
 		// classes are in "PascalCase".
-		$pascal = preg_split( '/(?=[A-Z])/', $piece,  -1, PREG_SPLIT_NO_EMPTY );
+		$pascal = preg_split( '/((?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z]))/', $piece,  -1, PREG_SPLIT_NO_EMPTY );
 
 		// Lowercase and hyphenate the word pieces within a string.
 		$new_pieces[] = strtolower( join( '-', $pascal ) );
