@@ -40,7 +40,7 @@ class MinuteHour extends Base {
 	public function label() {
 
 		return sprintf(
-			$this->manager->label( 'archive_minute_hour' ),
+			$this->breadcrumbs->label( 'archive_minute_hour' ),
 			get_the_time(
 				esc_html_x( 'g:i a', 'minute and hour archives time format', 'hybrid-core' ),
 				$this->post

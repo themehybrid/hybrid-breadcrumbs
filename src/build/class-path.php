@@ -54,7 +54,7 @@ class Path extends Base {
 
 		// If the path is a post, run the parent crumbs and bail early.
 		if ( $post ) {
-			$this->builder->build( 'PostAncestors', [ 'post' => $post ] );
+			$this->breadcrumbs->build( 'PostAncestors', [ 'post' => $post ] );
 			return;
 		}
 
@@ -78,7 +78,7 @@ class Path extends Base {
 				// and break out of the loop.
 				if ( ! empty( $post ) && 0 < $post->ID ) {
 
-					$this->builder->build( 'PostAncestors', [
+					$this->breadcrumbs->build( 'PostAncestors', [
 						'post' => $post
 					] );
 
@@ -88,7 +88,7 @@ class Path extends Base {
 				// that and break out of the loop.
 				} elseif ( $types = get_post_types_by_slug( $slug ) ) {
 
-					$this->builder->build( 'PostType', [
+					$this->breadcrumbs->build( 'PostType', [
 						'post_type' => $types[0]
 					] );
 

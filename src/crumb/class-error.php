@@ -30,6 +30,6 @@ class Error extends Base {
 	 */
 	public function label() {
 
-		return $this->manager->label( 'error_404' );
+		return $this->breadcrumbs->label( 'error_404' );
 	}
 }

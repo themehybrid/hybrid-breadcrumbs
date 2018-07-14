@@ -31,7 +31,7 @@ class Week extends Base {
 	public function label() {
 
 		return sprintf(
-			$this->manager->label( 'archive_week' ),
+			$this->breadcrumbs->label( 'archive_week' ),
 			get_the_time(
 				esc_html_x( 'W', 'weekly archives date format', 'hybrid-core' )
 			)

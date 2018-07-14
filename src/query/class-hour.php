@@ -31,18 +31,18 @@ class Hour extends Base {
 	public function make() {
 
 		// Build network crumbs.
-		$this->builder->build( 'Network' );
+		$this->breadcrumbs->build( 'Network' );
 
 		// Add site home crumb.
-		$this->builder->crumb( 'Home' );
+		$this->breadcrumbs->crumb( 'Home' );
 
 		// Build rewrite front crumbs.
-		$this->builder->build( 'RewriteFront' );
+		$this->breadcrumbs->build( 'RewriteFront' );
 
 		// Add hour crumb.
-		$this->builder->crumb( 'Hour' );
+		$this->breadcrumbs->crumb( 'Hour' );
 
 		// Build paged crumbs.
-		$this->builder->build( 'Paged' );
+		$this->breadcrumbs->build( 'Paged' );
 	}
 }

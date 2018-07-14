@@ -31,7 +31,7 @@ class Paged extends Base {
 	public function label() {
 
 		return sprintf(
-			$this->manager->label( 'paged' ),
+			$this->breadcrumbs->label( 'paged' ),
 			number_format_i18n( absint( get_query_var( 'paged' ) ) )
 		);
 	}

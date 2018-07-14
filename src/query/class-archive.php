@@ -34,61 +34,61 @@ class Archive extends Base {
 		// archive breadcrumbs to build.
 		if ( is_post_type_archive() ) {
 
-			$this->builder->query( 'PostTypeArchive' );
+			$this->breadcrumbs->query( 'PostTypeArchive' );
 
 		} elseif ( is_category() || is_tag() || is_tax() ) {
 
-			$this->builder->query( 'Tax' );
+			$this->breadcrumbs->query( 'Tax' );
 
 		} elseif ( is_author() ) {
 
-			$this->builder->query( 'Author' );
+			$this->breadcrumbs->query( 'Author' );
 
 		} elseif ( get_query_var( 'minute' ) && get_query_var( 'hour' ) ) {
 
-			$this->builder->query( 'MinuteHour' );
+			$this->breadcrumbs->query( 'MinuteHour' );
 
 		} elseif ( get_query_var( 'minute' ) ) {
 
-			$this->builder->query( 'Minute' );
+			$this->breadcrumbs->query( 'Minute' );
 
 		} elseif ( get_query_var( 'hour' ) ) {
 
-			$this->builder->query( 'Hour' );
+			$this->breadcrumbs->query( 'Hour' );
 
 		} elseif ( is_day() ) {
 
-			$this->builder->query( 'Day' );
+			$this->breadcrumbs->query( 'Day' );
 
 		} elseif ( get_query_var( 'week' ) ) {
 
-			$this->builder->query( 'Week' );
+			$this->breadcrumbs->query( 'Week' );
 
 		} elseif ( is_month() ) {
 
-			$this->builder->query( 'Month' );
+			$this->breadcrumbs->query( 'Month' );
 
 		} elseif ( is_year() ) {
 
-			$this->builder->query( 'Year' );
+			$this->breadcrumbs->query( 'Year' );
 
 		} else {
 			// Build network crumbs.
-			$this->builder->build( 'Network' );
+			$this->breadcrumbs->build( 'Network' );
 
 			// Add site home crumb.
-			$this->builder->crumb( 'Home' );
+			$this->breadcrumbs->crumb( 'Home' );
 
 			// Build rewrite front crumbs if date/time query.
 			if ( is_date() || is_time() ) {
-				$this->builder->build( 'RewriteFront' );
+				$this->breadcrumbs->build( 'RewriteFront' );
 			}
 
 			// Add archive crumb.
-			$this->builder->crumb( 'Archive' );
+			$this->breadcrumbs->crumb( 'Archive' );
 
 			// Build paged crumbs.
-			$this->builder->build( 'Paged' );
+			$this->breadcrumbs->build( 'Paged' );
 		}
 	}
 }

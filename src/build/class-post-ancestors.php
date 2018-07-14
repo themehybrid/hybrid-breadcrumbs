@@ -69,14 +69,14 @@ class PostAncestors extends Base {
 		}
 
 		// Get the post hierarchy based off the final parent post.
-		$this->builder->build( 'PostHierarchy', [ 'post' => $post ] );
+		$this->breadcrumbs->build( 'PostHierarchy', [ 'post' => $post ] );
 
 		// Display terms for specific post type taxonomy if requested.
-		if ( $this->manager->postTaxonomy( $post->post_type ) ) {
+		if ( $this->breadcrumbs->postTaxonomy( $post->post_type ) ) {
 
-			$this->builder->build( 'PostTerms', [
+			$this->breadcrumbs->build( 'PostTerms', [
 				'post'     => $post,
-				'taxonomy' => $this->manager->postTaxonomy( $post->post_type )
+				'taxonomy' => $this->breadcrumbs->postTaxonomy( $post->post_type )
 			] );
 		}
 
@@ -84,7 +84,7 @@ class PostAncestors extends Base {
 
 			array_map( function( $parent ) {
 
-				$this->builder->crumb( 'Post', [ 'post' => $parent ] );
+				$this->breadcrumbs->crumb( 'Post', [ 'post' => $parent ] );
 
 			}, array_reverse( $parents ) );
 		}

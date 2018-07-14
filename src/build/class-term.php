@@ -49,7 +49,7 @@ class Term extends Base {
 
 		// Build rewrite front crumbs if taxonomy uses it.
 		if ( $rewrite && $rewrite['with_front'] ) {
-			$this->builder->build( 'RewriteFront' );
+			$this->breadcrumbs->build( 'RewriteFront' );
 		}
 
 		// Build crumbs based on the rewrite slug.
@@ -58,7 +58,7 @@ class Term extends Base {
 			$path = trim( $rewrite['slug'], '/' );
 
 			// Build path crumbs.
-			$this->builder->build( 'Path', [ 'path' => $path ] );
+			$this->breadcrumbs->build( 'Path', [ 'path' => $path ] );
 
 			// We need to split the string to search for post type
 			// slugs that may be a part of the taxonomy slug.
@@ -79,7 +79,7 @@ class Term extends Base {
 
 					if ( $types ) {
 
-						$this->builder->build( 'PostType', [
+						$this->breadcrumbs->build( 'PostType', [
 							'post_type' => $types[0]
 						] );
 
@@ -93,7 +93,7 @@ class Term extends Base {
 		// If there's a single post type for the taxonomy, use it.
 		if ( ! $done_post_type && 1 === count( $taxonomy->object_type ) ) {
 
-			$this->builder->build( 'PostType', [
+			$this->breadcrumbs->build( 'PostType', [
 				'post_type' => $taxonomy->object_type[0]
 			] );
 		}
@@ -101,7 +101,7 @@ class Term extends Base {
 		// If the taxonomy is hierarchical, list the parent terms.
 		if ( is_taxonomy_hierarchical( $taxonomy->name ) && $this->term->parent ) {
 
-			$this->builder->build( 'TermAncestors', [ 'term' => $this->term ] );
+			$this->breadcrumbs->build( 'TermAncestors', [ 'term' => $this->term ] );
 		}
 	}
 }

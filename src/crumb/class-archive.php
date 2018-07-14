@@ -30,6 +30,6 @@ class Archive extends Base {
 	 */
 	public function label() {
 
-		return $this->manager->label( 'archives' );
+		return $this->breadcrumbs->label( 'archives' );
 	}
 }

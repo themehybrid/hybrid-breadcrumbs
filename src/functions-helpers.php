@@ -25,7 +25,7 @@ use Hybrid\Breadcrumbs\Core\Breadcrumbs;
  */
 function breadcrumbs( array $args = [] ) {
 
-	return new Breadcrumbs( $args );
+	return ( new Breadcrumbs( $args ) )->make();
 }
 
 /**

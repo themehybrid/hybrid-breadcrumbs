@@ -32,13 +32,13 @@ class PostTypeArchive extends Base {
 	public function make() {
 
 		// Build network crumbs.
-		$this->builder->build( 'Network' );
+		$this->breadcrumbs->build( 'Network' );
 
 		// Add site home crumb.
-		$this->builder->crumb( 'Home' );
+		$this->breadcrumbs->crumb( 'Home' );
 
 		// Build rewrite front crumbs.
-		$this->builder->build( 'RewriteFront' );
+		$this->breadcrumbs->build( 'RewriteFront' );
 
 		// Get the post type object.
 		$type = get_post_type_object( get_query_var( 'post_type' ) );
@@ -47,38 +47,38 @@ class PostTypeArchive extends Base {
 
 			// Build rewrite front crumbs if post type uses it.
 			if ( $type->rewrite['with_front'] ) {
-				$this->builder->build( 'RewriteFront' );
+				$this->breadcrumbs->build( 'RewriteFront' );
 			}
 
 			// If there's a rewrite slug, check for parents.
 			if ( ! empty( $type->rewrite['slug'] ) ) {
 
-				$this->builder->build( 'Path', [
+				$this->breadcrumbs->build( 'Path', [
 					'path' => $type->rewrite['slug']
 				] );
 			}
 		}
 
 		// Add post type crumb.
-		$this->builder->crumb( 'PostType', [ 'post_type' => $type ] );
+		$this->breadcrumbs->crumb( 'PostType', [ 'post_type' => $type ] );
 
 		// If viewing a search page for the post type archive.
 		if ( is_search() ) {
 
 			// Add search crumb.
-			$this->builder->crumb( 'Search' );
+			$this->breadcrumbs->crumb( 'Search' );
 		}
 
 		// If viewing a post type archive by author.
 		if ( is_author() ) {
 
 			// Add author crumb.
-			$this->builder->crumb( 'Author', [
+			$this->breadcrumbs->crumb( 'Author', [
 				'user' => new WP_User( get_query_var( 'author' ) )
 			] );
 		}
 
 		// Build paged crumbs.
-		$this->builder->build( 'Paged' );
+		$this->breadcrumbs->build( 'Paged' );
 	}
 }

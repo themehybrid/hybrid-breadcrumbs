@@ -30,7 +30,7 @@ class Network extends Base {
 	 */
 	public function label() {
 
-		return $this->manager->label( 'home' );
+		return $this->breadcrumbs->label( 'home' );
 	}
 
 	/**

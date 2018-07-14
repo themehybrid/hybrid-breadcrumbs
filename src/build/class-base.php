@@ -17,7 +17,6 @@
 namespace Hybrid\Breadcrumbs\Build;
 
 use Hybrid\Breadcrumbs\Contracts\Breadcrumbs;
-use Hybrid\Breadcrumbs\Contracts\Builder;
 use Hybrid\Breadcrumbs\Contracts\Build;
 
 /**
@@ -29,22 +28,13 @@ use Hybrid\Breadcrumbs\Contracts\Build;
 abstract class Base implements Build {
 
 	/**
-	 * Builder object.
-	 *
-	 * @since  1.0.0
-	 * @access protected
-	 * @var    Builder
-	 */
-	protected $builder;
-
-	/**
 	 * Breadcrumbs object.
 	 *
 	 * @since  1.0.0
 	 * @access protected
 	 * @var    Breadcrumbs
 	 */
-	protected $manager;
+	protected $breadcrumbs;
 
 	/**
 	 * Creates a new build object. Any data passed in within the `$data`
@@ -53,12 +43,11 @@ abstract class Base implements Build {
 	 *
 	 * @since  1.0.0
 	 * @access public
-	 * @param  Builder     $builder
-	 * @param  Breadcrumbs $manager
+	 * @param  Breadcrumbs $breadcrumbs
 	 * @param  array       $data
 	 * @return void
 	 */
-	public function __construct( Builder $builder, Breadcrumbs $manager, array $data = [] ) {
+	public function __construct( Breadcrumbs $breadcrumbs, array $data = [] ) {
 
 		foreach ( array_keys( get_object_vars( $this ) ) as $key ) {
 
@@ -67,8 +56,7 @@ abstract class Base implements Build {
 			}
 		}
 
-		$this->builder = $builder;
-		$this->manager = $manager;
+		$this->breadcrumbs = $breadcrumbs;
 	}
 
 	/**

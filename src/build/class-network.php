@@ -30,9 +30,9 @@ class Network extends Base {
 	 */
 	public function make() {
 
-		if ( is_multisite() && $this->manager->option( 'network' ) && ! is_main_site() ) {
+		if ( is_multisite() && $this->breadcrumbs->option( 'network' ) && ! is_main_site() ) {
 
-			$this->builder->crumb( 'Network' );
+			$this->breadcrumbs->crumb( 'Network' );
 		}
 	}
 }

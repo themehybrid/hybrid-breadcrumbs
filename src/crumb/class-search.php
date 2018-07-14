@@ -30,7 +30,7 @@ class Search extends Base {
 	 */
 	public function label() {
 
-		return sprintf( $this->manager->label( 'search' ), get_search_query() );
+		return sprintf( $this->breadcrumbs->label( 'search' ), get_search_query() );
 	}
 
 	/**

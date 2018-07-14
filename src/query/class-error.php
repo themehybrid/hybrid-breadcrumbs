@@ -31,12 +31,12 @@ class Error extends Base {
 	public function make() {
 
 		// Build network crumbs.
-		$this->builder->build( 'Network' );
+		$this->breadcrumbs->build( 'Network' );
 
 		// Add site home crumb.
-		$this->builder->crumb( 'Home' );
+		$this->breadcrumbs->crumb( 'Home' );
 
 		// Add 404 crumb.
-		$this->builder->crumb( 'Error' );
+		$this->breadcrumbs->crumb( 'Error' );
 	}
 }

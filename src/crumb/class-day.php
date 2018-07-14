@@ -40,7 +40,7 @@ class Day extends Base {
 	public function label() {
 
 		return sprintf(
-			$this->manager->label( 'archive_day' ),
+			$this->breadcrumbs->label( 'archive_day' ),
 			get_the_time(
 				esc_html_x( 'j', 'daily archives date format', 'hybrid-core' ),
 				$this->post

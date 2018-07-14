@@ -37,7 +37,7 @@ class RewriteFront extends Base {
 
 		if ( $wp_rewrite->front ) {
 
-			$this->builder->build( 'Path', [
+			$this->breadcrumbs->build( 'Path', [
 				'path' => $wp_rewrite->front
 			] );
 		}

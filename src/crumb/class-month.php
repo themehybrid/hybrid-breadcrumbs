@@ -40,7 +40,7 @@ class Month extends Base {
 	public function label() {
 
 		return sprintf(
-			$this->manager->label( 'archive_month' ),
+			$this->breadcrumbs->label( 'archive_month' ),
 			get_the_time(
 				esc_html_x( 'F', 'monthly archives date format', 'hybrid-core' ),
 				$this->post

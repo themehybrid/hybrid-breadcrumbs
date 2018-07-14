@@ -30,9 +30,9 @@ class Home extends Base {
 	 */
 	public function label() {
 
-		$network = $this->manager->option( 'network' ) && ! is_main_site();
+		$network = $this->breadcrumbs->option( 'network' ) && ! is_main_site();
 
-		return $network ? get_bloginfo( 'name' ) : $this->manager->label( 'home' );
+		return $network ? get_bloginfo( 'name' ) : $this->breadcrumbs->label( 'home' );
 	}
 
 	/**

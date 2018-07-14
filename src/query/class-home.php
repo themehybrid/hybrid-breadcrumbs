@@ -31,7 +31,7 @@ class Home extends Base {
 	public function make() {
 
 		is_front_page()
-			? $this->builder->query( 'FrontPage' )
-			: $this->builder->query( 'Singular' );
+			? $this->breadcrumbs->query( 'FrontPage' )
+			: $this->breadcrumbs->query( 'Singular' );
 	}
 }

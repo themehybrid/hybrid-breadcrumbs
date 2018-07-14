@@ -31,7 +31,7 @@ class PagedComments extends Base {
 	public function label() {
 
 		return sprintf(
-			$this->manager->label( 'paged_comments' ),
+			$this->breadcrumbs->label( 'paged_comments' ),
 			number_format_i18n( absint( get_query_var( 'cpage' ) ) )
 		);
 	}

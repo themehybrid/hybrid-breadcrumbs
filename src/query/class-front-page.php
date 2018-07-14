@@ -32,16 +32,16 @@ class FrontPage extends Base {
 	 */
 	public function make() {
 
-		if ( $this->manager->option( 'show_on_front' ) || is_paged_view() ) {
+		if ( $this->breadcrumbs->option( 'show_on_front' ) || is_paged_view() ) {
 
 			// Build network crumbs.
-			$this->builder->build( 'Network' );
+			$this->breadcrumbs->build( 'Network' );
 
 			// Add site home crumb.
-			$this->builder->crumb( 'Home' );
+			$this->breadcrumbs->crumb( 'Home' );
 
 			// Build paged crumbs.
-			$this->builder->build( 'Paged' );
+			$this->breadcrumbs->build( 'Paged' );
 		}
 	}
 }

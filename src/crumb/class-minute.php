@@ -40,7 +40,7 @@ class Minute extends Base {
 	public function label() {
 
 		return sprintf(
-			$this->manager->label( 'archive_minute' ),
+			$this->breadcrumbs->label( 'archive_minute' ),
 			get_the_time(
 				esc_html_x( 'i', 'minute archives time format', 'hybrid-core' ),
 				$this->post

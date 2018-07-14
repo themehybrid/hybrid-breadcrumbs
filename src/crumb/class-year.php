@@ -40,7 +40,7 @@ class Year extends Base {
 	public function label() {
 
 		return sprintf(
-			$this->manager->label( 'archive_year' ),
+			$this->breadcrumbs->label( 'archive_year' ),
 			get_the_time(
 				esc_html_x( 'Y', 'yearly archives date format', 'hybrid-core' ),
 				$this->post

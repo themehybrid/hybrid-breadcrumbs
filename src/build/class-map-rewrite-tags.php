@@ -70,22 +70,22 @@ class MapRewriteTags extends Base {
 			// If using the %year% tag, add a link to the yearly archive.
 			if ( '%year%' == $tag ) {
 
-				$this->builder->crumb( 'Year', [ 'post' => $this->post ] );
+				$this->breadcrumbs->crumb( 'Year', [ 'post' => $this->post ] );
 
 			// If using the %monthnum% tag, add a link to the monthly archive.
 			} elseif ( '%monthnum%' == $tag ) {
 
-				$this->builder->crumb( 'Month', [ 'post' => $this->post ] );
+				$this->breadcrumbs->crumb( 'Month', [ 'post' => $this->post ] );
 
 			// If using the %day% tag, add a link to the daily archive.
 			} elseif ( '%day%' == $tag ) {
 
-				$this->builder->crumb( 'Day', [ 'post' => $this->post ] );
+				$this->breadcrumbs->crumb( 'Day', [ 'post' => $this->post ] );
 
 			// If using the %author% tag, add a link to the post author archive.
 			} elseif ( '%author%' == $tag ) {
 
-				$this->builder->crumb( 'Author', [
+				$this->breadcrumbs->crumb( 'Author', [
 					'user' => new WP_User( $this->post->post_author )
 				] );
 
@@ -94,10 +94,10 @@ class MapRewriteTags extends Base {
 			} elseif ( taxonomy_exists( trim( $tag, '%' ) ) ) {
 
 				// Force override terms in this post type.
-				$this->manager->args->post_taxonomy[ $this->post->post_type ] = false;
+				$this->breadcrumbs->args->post_taxonomy[ $this->post->post_type ] = false;
 
 				// Build post terms crumbs.
-				$this->builder->build( 'PostTerms', [
+				$this->breadcrumbs->build( 'PostTerms', [
 					'post'     => $this->post,
 					'taxonomy' => trim( $tag, '%' )
 				] );

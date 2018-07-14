@@ -34,24 +34,24 @@ class Author extends Base {
 		global $wp_rewrite;
 
 		// Build network crumbs.
-		$this->builder->build( 'Network' );
+		$this->breadcrumbs->build( 'Network' );
 
 		// Add site home crumb.
-		$this->builder->crumb( 'Home' );
+		$this->breadcrumbs->crumb( 'Home' );
 
 		// Build rewrite front crumbs.
-		$this->builder->build( 'RewriteFront' );
+		$this->breadcrumbs->build( 'RewriteFront' );
 
 		// If $author_base exists, check for parent pages.
 		if ( ! empty( $wp_rewrite->author_base ) ) {
 
-			$this->builder->build( 'Path', [
+			$this->breadcrumbs->build( 'Path', [
 				'page' => $wp_rewrite->author_base
 			] );
 		}
 
 		// Add author crumb.
-		$this->builder->crumb( 'Author', [
+		$this->breadcrumbs->crumb( 'Author', [
 			'user' => new WP_User( get_query_var( 'author' ) )
 		] );
 	}

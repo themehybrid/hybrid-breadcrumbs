@@ -48,10 +48,10 @@ class PostHierarchy extends Base {
 		if ( 'post' === $type->name ) {
 
 			// Add $wp_rewrite->front to the trail.
-			$this->builder->build( 'RewriteFront' );
+			$this->breadcrumbs->build( 'RewriteFront' );
 
 			// Map the rewrite tags.
-			$this->builder->build( 'MapRewriteTags', [
+			$this->breadcrumbs->build( 'MapRewriteTags', [
 				'post' => $this->post,
 				'path' => get_option( 'permalink_structure' )
 			] );
@@ -68,26 +68,26 @@ class PostHierarchy extends Base {
 			// Build the rewrite front crumbs.
 			if ( $rewrite['with_front'] ) {
 
-				$this->builder->build( 'RewriteFront' );
+				$this->breadcrumbs->build( 'RewriteFront' );
 			}
 
 			// If there's a path, check for parents.
 			if ( $rewrite['slug'] ) {
 
-				$this->builder->build( 'Path', [ 'path' => $rewrite['slug'] ] );
+				$this->breadcrumbs->build( 'Path', [ 'path' => $rewrite['slug'] ] );
 			}
 		}
 
 		// If there's an archive page, add it to the trail.
 		if ( $type->has_archive ) {
 
-			$this->builder->build( 'PostType', [ 'post_type' => $type->name ] );
+			$this->breadcrumbs->build( 'PostType', [ 'post_type' => $type->name ] );
 		}
 
 		// Map the rewrite tags if there's a `%` in the slug.
 		if ( $rewrite && false !== strpos( $rewrite['slug'], '%' ) ) {
 
-			$this->builder->build( 'MapRewriteTags', [
+			$this->breadcrumbs->build( 'MapRewriteTags', [
 				'post' => $this->post,
 				'path' => $rewrite['slug']
 			] );

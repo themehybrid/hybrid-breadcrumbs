@@ -31,19 +31,19 @@ class Month extends Base {
 	public function make() {
 
 		// Build network crumbs.
-		$this->builder->build( 'Network' );
+		$this->breadcrumbs->build( 'Network' );
 
 		// Add site home crumb.
-		$this->builder->crumb( 'Home' );
+		$this->breadcrumbs->crumb( 'Home' );
 
 		// Build rewrite front crumbs.
-		$this->builder->build( 'RewriteFront' );
+		$this->breadcrumbs->build( 'RewriteFront' );
 
 		// Add year and month crumbs.
-		$this->builder->crumb( 'Year' );
-		$this->builder->crumb( 'Month' );
+		$this->breadcrumbs->crumb( 'Year' );
+		$this->breadcrumbs->crumb( 'Month' );
 
 		// Build paged crumbs.
-		$this->builder->build( 'Paged' );
+		$this->breadcrumbs->build( 'Paged' );
 	}
 }

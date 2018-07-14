@@ -52,7 +52,7 @@ class PostType extends Base {
 			// Add post crumb if we have a posts page.
 			if ( 'posts' !== $show_on_front && 0 < $post_id ) {
 
-				$this->builder->crumb( 'Post', [
+				$this->breadcrumbs->crumb( 'Post', [
 					'post' => get_post( $post_id )
 				] );
 			}
@@ -61,7 +61,7 @@ class PostType extends Base {
 		}
 
 		// Add post type crumb.
-		$this->builder->crumb( 'PostType', [
+		$this->breadcrumbs->crumb( 'PostType', [
 			'post_type' => get_post_type_object( $this->post_type )
 		] );
 	}

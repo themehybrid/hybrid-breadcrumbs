@@ -24,15 +24,6 @@ use Hybrid\Breadcrumbs\Contracts\Breadcrumbs as BreadcrumbsContract;
 class Breadcrumbs implements BreadcrumbsContract {
 
 	/**
-	 * The `Builder` object, which actually builds the array of breadcrumbs.
-	 *
-	 * @since  1.0.0
-	 * @access protected
-	 * @var    Builder
-	 */
-	protected $builder = null;
-
-	/**
 	 * The parsed arguments passed into the class.
 	 *
 	 * @since  1.0.0
@@ -40,6 +31,15 @@ class Breadcrumbs implements BreadcrumbsContract {
 	 * @var    array
 	 */
 	public $args = [];
+
+	/**
+	 * Array of `Crumb` objects.
+	 *
+	 * @since  1.0.0
+	 * @access protected
+	 * @var    array
+	 */
+	protected $crumbs = [];
 
 	/**
 	 * Creates a new breadcrumbs object.
@@ -137,6 +137,18 @@ class Breadcrumbs implements BreadcrumbsContract {
 	}
 
 	/**
+	 * Returns an array of `Crumb` objects.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return array
+	 */
+	public function all() {
+
+		return $this->crumbs;
+	}
+
+	/**
 	 * Renders the breadcrumbs HTML output.
 	 *
 	 * @since  1.0.0
@@ -159,24 +171,21 @@ class Breadcrumbs implements BreadcrumbsContract {
 
 		$html = $list = $title = '';
 
-		// Creates breadcrumbs.
-		$this->make();
-
 		// Get an array of all the available breadcrumbs from the builder.
-		$crumbs = $this->builder->all();
-
-		// HTML allowed in labels. Everything else gets stripped out.
-		$allowed_html = [
-			'abbr'    => [ 'title' => true ],
-			'acronym' => [ 'title' => true ],
-			'code'    => true,
-			'em'      => true,
-			'strong'  => true,
-			'i'       => true,
-			'b'       => true
-		];
+		$crumbs = $this->all();
 
 		if ( $crumbs ) {
+
+			// HTML allowed in labels. Everything else gets stripped out.
+			$allowed_html = [
+				'abbr'    => [ 'title' => true ],
+				'acronym' => [ 'title' => true ],
+				'code'    => true,
+				'em'      => true,
+				'strong'  => true,
+				'i'       => true,
+				'b'       => true
+			];
 
 			$count     = count( $crumbs );
 			$i         = 1;
@@ -265,22 +274,80 @@ class Breadcrumbs implements BreadcrumbsContract {
 	}
 
 	/**
-	 * Creates a new builder object.
+	 * Runs through a series of conditionals based on the current WordPress
+	 * query. Once we figure out which page we're viewing, we create a new
+	 * `Query` object and let it build the breadcrumbs.
 	 *
 	 * @since  1.0.0
-	 * @access protected
+	 * @access public
+	 * @return Breadcrumbs
+	 */
+	public function make() {
+
+		// This may not follow any sort of standards-based code
+		// formatting rules, but you can damn well read it better!
+		    if ( is_front_page() ) { $this->query( 'FrontPage' ); }
+		elseif ( is_home()       ) { $this->query( 'Home'      ); }
+		elseif ( is_singular()   ) { $this->query( 'Singular'  ); }
+		elseif ( is_archive()    ) { $this->query( 'Archive'   ); }
+		elseif ( is_search()     ) { $this->query( 'Search'    ); }
+		elseif ( is_404()        ) { $this->query( 'Error'     ); }
+		elseif ( is_paged()      ) { $this->query( 'Paged'     ); }
+
+		// Return the object for chaining methods.
+		return $this;
+	}
+
+	/**
+	 * Creates a new `Query` object and runs its `make()` method.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @param  string  $type
+	 * @param  array   $data
 	 * @return void
 	 */
-	protected function make() {
+	public function query( $type, array $data = [] ) {
 
-		if ( is_null( $this->builder ) ) {
+		$class = "\\Hybrid\\Breadcrumbs\\Query\\{$type}";
 
-			// Creates a new builder object.
-			$this->builder = new Builder( $this );
+		$query = new $class( $this, $data );
 
-			// Tell the builder to make new breadcrumbs.
-			$this->builder->make();
-		}
+		$query->make();
+	}
+
+	/**
+	 * Creates a new `Build` object and runs its `make()` method.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @param  string  $type
+	 * @param  array   $data
+	 * @return void
+	 */
+	public function build( $type, array $data = [] ) {
+
+		$class = "\\Hybrid\\Breadcrumbs\\Build\\{$type}";
+
+		$build = new $class( $this, $data );
+
+		$build->make();
+	}
+
+	/**
+	 * Creates a new `Crumb` object and adds it to the array of crumbs.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @param  string  $type
+	 * @param  array   $data
+	 * @return void
+	 */
+	public function crumb( $type, array $data = [] ) {
+
+		$class =  "\\Hybrid\\Breadcrumbs\\Crumb\\{$type}";
+
+		$this->crumbs[] = new $class( $this, $data );
 	}
 
 	/**

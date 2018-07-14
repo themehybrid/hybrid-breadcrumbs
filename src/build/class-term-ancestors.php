@@ -62,7 +62,7 @@ class TermAncestors extends Base {
 
 			array_map( function( $parent ) {
 
-				$this->builder->crumb( 'Term', [ 'term' => $parent ] );
+				$this->breadcrumbs->crumb( 'Term', [ 'term' => $parent ] );
 
 			}, array_reverse( $parents ) );
 		}
