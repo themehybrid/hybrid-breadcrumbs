@@ -383,13 +383,13 @@ class Trail implements Breadcrumbs {
 	 *
 	 * @since  1.0.0
 	 * @access public
-	 * @param  string  $name
+	 * @param  string  $post_type
 	 * @return string
 	 */
-	public function postTaxonomy( $name ) {
+	public function postTaxonomy( $post_type ) {
 
 		$taxes = $this->option( 'post_taxonomy' );
 
-		return isset( $taxes[ $name ] ) ? $taxes[ $name ] : '';
+		return isset( $taxes[ $post_type ] ) ? $taxes[ $post_type ] : '';
 	}
 }

@@ -118,8 +118,8 @@ interface Breadcrumbs {
 	 *
 	 * @since  1.0.0
 	 * @access public
-	 * @param  string  $name
+	 * @param  string  $post_type
 	 * @return string
 	 */
-	public function postTaxonomy( $name );
+	public function postTaxonomy( $post_type );
 }
