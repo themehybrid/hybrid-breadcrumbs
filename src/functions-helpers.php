@@ -36,7 +36,7 @@ function breadcrumbs( array $args = [] ) {
  * @param  array  $args
  * @return void
  */
-function render_trail( array $args = [] ) {
+function render( array $args = [] ) {
 
 	breadcrumbs( $args )->render();
 }
@@ -49,7 +49,7 @@ function render_trail( array $args = [] ) {
  * @param  array  $args
  * @return string
  */
-function fetch_trail( array $args = [] ) {
+function fetch( array $args = [] ) {
 
 	return breadcrumbs( $args )->fetch();
 }

@@ -49,13 +49,13 @@ If you're creating a theme using the [Hybrid Core framework](https://github.com/
 
 ### Usage
 
-Hybrid Breadcrumbs has a few functions, but the primary function that you'll want to use is `render_trail()`. Typically, this would go into something like your theme's `header.php` template but can be used anywhere you want to show the breadcrumb trail.  The function call would look like this:
+Hybrid Breadcrumbs has a few functions, but the primary function that you'll want to use is `render()`. Typically, this would go into something like your theme's `header.php` template but can be used anywhere you want to show the breadcrumb trail.  The function call would look like this:
 
 ```
-<?php Hybrid\Breadcrumbs\render_trail() ?>
+<?php Hybrid\Breadcrumbs\render() ?>
 ```
 
-_Note that the plugin's namespace is `Hybrid\Breadcrumbs`.  If you're working within another namespace, you'll want to add a `use` statement after your own namespace call or call `\Hybrid\Breadcrumbs\render_trail()` directly.  I'll assume you know what you're doing if you're working with namespaces.  Otherwise, stick to the above._
+_Note that the plugin's namespace is `Hybrid\Breadcrumbs`.  If you're working within another namespace, you'll want to add a `use` statement after your own namespace call or call `\Hybrid\Breadcrumbs\render()` directly.  I'll assume you know what you're doing if you're working with namespaces.  Otherwise, stick to the above._
 
 ### Functions
 
@@ -63,13 +63,13 @@ All of the primary functions you might use follow the same parameter pattern (se
 
 ```
 // Returns an instance of the Breadcrumbs class.
-breadcrumbs( $args = [] );
+breadcrumbs( array $args = [] );
 
 // Renders the HTML output of the breadcrumb trail if it exists.
-render_trail( $args = [] );
+render( array $args = [] );
 
 // Returns the HTML output of the breadcrumb trail or an empty string.
-fetch_trail( $args = [] );
+fetch( array $args = [] );
 ```
 
 ### Parameters
