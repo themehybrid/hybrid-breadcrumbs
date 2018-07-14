@@ -13,7 +13,7 @@
 
 namespace Hybrid\Breadcrumbs;
 
-use Hybrid\Breadcrumbs\Core\Breadcrumbs;
+use Hybrid\Breadcrumbs\Core\Trail;
 
 /**
  * Returns a new breadcrumbs object.
@@ -21,11 +21,11 @@ use Hybrid\Breadcrumbs\Core\Breadcrumbs;
  * @since  1.0.0
  * @access public
  * @param  array  $args
- * @return Breadcrumbs
+ * @return Trail
  */
 function breadcrumbs( array $args = [] ) {
 
-	return ( new Breadcrumbs( $args ) )->make();
+	return ( new Trail( $args ) )->make();
 }
 
 /**

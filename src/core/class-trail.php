@@ -13,7 +13,7 @@
 
 namespace Hybrid\Breadcrumbs\Core;
 
-use Hybrid\Breadcrumbs\Contracts\Breadcrumbs as BreadcrumbsContract;
+use Hybrid\Breadcrumbs\Contracts\Breadcrumbs;
 
 /**
  * Breadcrumbs class.
@@ -21,7 +21,7 @@ use Hybrid\Breadcrumbs\Contracts\Breadcrumbs as BreadcrumbsContract;
  * @since  1.0.0
  * @access public
  */
-class Breadcrumbs implements BreadcrumbsContract {
+class Trail implements Breadcrumbs {
 
 	/**
 	 * The parsed arguments passed into the class.
