@@ -22,6 +22,15 @@ namespace Hybrid\Breadcrumbs\Contracts;
 interface Breadcrumbs {
 
 	/**
+	 * Builds a new breadcrumbs object and returns it.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return Breadcrumbs
+	 */
+	public function make();
+
+	/**
 	 * Renders the breadcrumbs HTML output.
 	 *
 	 * @since  1.0.0
@@ -38,6 +47,51 @@ interface Breadcrumbs {
 	 * @return string
 	 */
 	public function fetch();
+
+	/**
+	 * Returns the breadcrumbs in an array.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return array
+	 */
+	public function all();
+
+	/**
+	 * Creates a new `\Hybrid\Breadcrumbs\Contracts\Query` object and runs
+	 * its `make()` method.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @param  string  $type
+	 * @param  array   $data
+	 * @return void
+	 */
+	public function query( $type, array $data = [] );
+
+	/**
+	 * Creates a new `\Hybrid\Breadcrumbs\Contracts\Build` object and runs
+	 * its `make()` method.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @param  string  $type
+	 * @param  array   $data
+	 * @return void
+	 */
+	public function build( $type, array $data = [] );
+
+	/**
+	 * Creates a new `\Hybrid\Breadcrumbs\Contracts\Crumb` object and adds
+	 * it to the array of crumbs.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @param  string  $type
+	 * @param  array   $data
+	 * @return void
+	 */
+	public function crumb( $type, array $data = [] );
 
 	/**
 	 * Returns a specific option or `false` if the option doesn't exist.
