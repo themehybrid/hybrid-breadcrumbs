@@ -22,6 +22,15 @@ namespace Hybrid\Breadcrumbs\Contracts;
 interface Crumb {
 
 	/**
+	 * Returns a type for the crumb.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
+	public function type();
+
+	/**
 	 * Returns a text label for the crumb.
 	 *
 	 * @since  1.0.0

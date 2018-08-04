@@ -227,11 +227,20 @@ class Trail implements Breadcrumbs {
 					);
 				}
 
+				// Get the base class to build modifier classes from.
+				$base_class = explode( ' ', $this->option( 'item_class' ) );
+				$base_class = array_shift( $base_class );
+
+				$classes = [
+					$this->option( 'item_class' ),
+					sprintf( "{$base_class}--%s", $crumb->type() )
+				];
+
 				// Build the list item.
 				$list .= sprintf(
 					'<%1$s class="%2$s" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">%3$s</%1$s>',
 					tag_escape( $this->option( 'item_tag' ) ),
-					esc_attr( $this->option( 'item_class' ) ),
+					esc_attr( join( ' ', $classes ) ),
 					$item
 				);
 

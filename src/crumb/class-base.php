@@ -60,6 +60,25 @@ abstract class Base implements Crumb {
 	}
 
 	/**
+	 * Returns the type for the crumb. By default, we just use the PHP class
+	 * name to build the type.  If wanting something custom, this should be
+	 * handled in a sub-class.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
+	public function type() {
+
+		$class = explode( '\\', get_class( $this ) );
+		$class = array_pop( $class );
+
+		$pascal = preg_split( '/((?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z]))/', $class, -1, PREG_SPLIT_NO_EMPTY );
+
+		return strtolower( join( '-', $pascal ) );
+	}
+
+	/**
 	 * Returns a label for the crumb.
 	 *
 	 * @since  1.0.0
