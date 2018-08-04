@@ -27,10 +27,10 @@ class Trail implements Breadcrumbs {
 	 * The parsed arguments passed into the class.
 	 *
 	 * @since  1.0.0
-	 * @access public
+	 * @access protected
 	 * @var    array
 	 */
-	public $args = [];
+	protected $args = [];
 
 	/**
 	 * Array of `Crumb` objects.
