@@ -21,13 +21,13 @@ The following docs are written with theme authors in mind because that'll be the
 
 First, you'll need to open your command line tool and change directories to your theme folder.
 
-```
+```bash
 cd path/to/wp-content/themes/<your-theme-name>
 ```
 
 Then, use Composer to install the package.
 
-```
+```bash
 composer require justintadlock/hybrid-breadcrumbs
 ```
 
@@ -35,7 +35,7 @@ Assuming you're not already including the Composer autoload file for your theme 
 
 The Composer autoload file will automatically load up Hybrid Breadcrumbs for you and make its code available for you to use.
 
-```
+```php
 if ( file_exists( get_parent_theme_file_path( 'vendor/autoload.php' ) ) ) {
 	require_once( get_parent_theme_file_path( 'vendor/autoload.php' ) );
 }
@@ -61,7 +61,7 @@ _Note that the plugin's namespace is `Hybrid\Breadcrumbs`.  If you're working wi
 
 All of the primary functions you might use follow the same parameter pattern (see parameters below).  Of course, all of these functions are under the `Hybrid\Breadcrumbs` namespace.
 
-```
+```php
 // Returns an instance of the Breadcrumbs class.
 breadcrumbs( array $args = [] );
 
@@ -70,6 +70,21 @@ render( array $args = [] );
 
 // Returns the HTML output of the breadcrumb trail or an empty string.
 fetch( array $args = [] );
+```
+
+### Static class
+
+If you prefer to work with static classes instead of functions, you can use the `Hybrid\Breadcrumbs\Util\Trail` class.
+
+```php
+// Returns an instance of the Breadcrumbs class.
+Trail::breadcrumbs( array $args = [] );
+
+// Renders the HTML output of the breadcrumb trail if it exists.
+Trail::render( array $args = [] );
+
+// Returns the HTML output of the breadcrumb trail or an empty string.
+Trail::fetch( array $args = [] );
 ```
 
 ### Parameters
@@ -94,7 +109,7 @@ The function accepts an single parameter, which an array of optional arguments f
 
 #### Default Parameters
 
-```
+```php
 $defaults = [
 	'labels'          => [],
 	'post_taxonomy'   => [],
@@ -118,7 +133,7 @@ $defaults = [
 
 Labels are used for various breadcrumbs where WordPress doesn't provide a title/labels.
 
-```
+```php
 $defaults = [
 	'title'               => __( 'Browse:',                               'hybrid-core' ),
 	'aria_label'          => _x( 'Breadcrumbs', 'breadcrumbs aria label', 'hybrid-core' ),
@@ -149,7 +164,7 @@ $defaults = [
 
 By default, no post taxonomies are registered.  However, if a site's post permalink structure is set to only `%postname%`, the following will be the default.
 
-```
+```php
 $defaults = [
 	'post' => 'category'
 ];

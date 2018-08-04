@@ -13,7 +13,7 @@
 
 namespace Hybrid\Breadcrumbs;
 
-use Hybrid\Breadcrumbs\Core\Trail;
+use Hybrid\Breadcrumbs\Util\Trail;
 
 /**
  * Returns a new breadcrumbs object.
@@ -25,7 +25,7 @@ use Hybrid\Breadcrumbs\Core\Trail;
  */
 function breadcrumbs( array $args = [] ) {
 
-	return ( new Trail( $args ) )->make();
+	return Trail::breadcrumbs( $args );
 }
 
 /**
@@ -38,7 +38,7 @@ function breadcrumbs( array $args = [] ) {
  */
 function render( array $args = [] ) {
 
-	breadcrumbs( $args )->render();
+	Trail::render( $args );
 }
 
 /**
@@ -51,5 +51,5 @@ function render( array $args = [] ) {
  */
 function fetch( array $args = [] ) {
 
-	return breadcrumbs( $args )->fetch();
+	return Trail::fetch( $args );
 }
