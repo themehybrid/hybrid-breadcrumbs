@@ -37,7 +37,7 @@ interface Breadcrumbs {
 	 * @access public
 	 * @return void
 	 */
-	public function render();
+	public function display();
 
 	/**
 	 * Returns the breadcrumbs HTML output.

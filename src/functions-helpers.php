@@ -36,9 +36,9 @@ function breadcrumbs( array $args = [] ) {
  * @param  array  $args
  * @return void
  */
-function render( array $args = [] ) {
+function display( array $args = [] ) {
 
-	Trail::render( $args );
+	Trail::display( $args );
 }
 
 /**

@@ -44,9 +44,9 @@ class Trail {
 	 * @param  array  $args
 	 * @return void
 	 */
-	public static function render( array $args = [] ) {
+	public static function display( array $args = [] ) {
 
-		static::breadcrumbs( $args )->render();
+		static::breadcrumbs( $args )->display();
 	}
 
 	/**
