@@ -49,7 +49,7 @@ function display( array $args = [] ) {
  * @param  array  $args
  * @return string
  */
-function fetch( array $args = [] ) {
+function render( array $args = [] ) {
 
-	return Trail::fetch( $args );
+	return Trail::render( $args );
 }

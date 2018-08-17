@@ -157,7 +157,7 @@ class Trail implements Breadcrumbs {
 	 */
 	public function display() {
 
-		echo $this->fetch();
+		echo $this->render();
 	}
 
 	/**
@@ -167,7 +167,7 @@ class Trail implements Breadcrumbs {
 	 * @access public
 	 * @return string
 	 */
-	public function fetch() {
+	public function render() {
 
 		$html = $list = $title = '';
 

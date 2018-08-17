@@ -46,7 +46,7 @@ interface Breadcrumbs {
 	 * @access public
 	 * @return string
 	 */
-	public function fetch();
+	public function render();
 
 	/**
 	 * Returns the breadcrumbs in an array.

@@ -57,8 +57,8 @@ class Trail {
 	 * @param  array  $args
 	 * @return string
 	 */
-	public static function fetch( array $args = [] ) {
+	public static function render( array $args = [] ) {
 
-		return static::breadcrumbs( $args )->fetch();
+		return static::breadcrumbs( $args )->render();
 	}
 }

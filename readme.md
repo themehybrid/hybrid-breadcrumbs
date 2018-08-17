@@ -69,7 +69,7 @@ breadcrumbs( array $args = [] );
 display( array $args = [] );
 
 // Returns the HTML output of the breadcrumb trail or an empty string.
-fetch( array $args = [] );
+render( array $args = [] );
 ```
 
 ### Static class
@@ -84,7 +84,7 @@ Trail::breadcrumbs( array $args = [] );
 Trail::display( array $args = [] );
 
 // Returns the HTML output of the breadcrumb trail or an empty string.
-Trail::fetch( array $args = [] );
+Trail::render( array $args = [] );
 ```
 
 ### Parameters
