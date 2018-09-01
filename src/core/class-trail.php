@@ -318,7 +318,10 @@ class Trail implements Breadcrumbs {
 	 */
 	public function query( $type, array $data = [] ) {
 
-		$class = "\\Hybrid\\Breadcrumbs\\Query\\{$type}";
+		$class = apply_filters(
+			"hybrid/breadcrumbs/query/{$type}",
+			"\\Hybrid\\Breadcrumbs\\Query\\{$type}"
+		);
 
 		$query = new $class( $this, $data );
 
@@ -336,7 +339,10 @@ class Trail implements Breadcrumbs {
 	 */
 	public function build( $type, array $data = [] ) {
 
-		$class = "\\Hybrid\\Breadcrumbs\\Build\\{$type}";
+		$class = apply_filters(
+			"hybrid/breadcrumbs/build/{$type}",
+			"\\Hybrid\\Breadcrumbs\\Build\\{$type}"
+		);
 
 		$build = new $class( $this, $data );
 
@@ -354,7 +360,10 @@ class Trail implements Breadcrumbs {
 	 */
 	public function crumb( $type, array $data = [] ) {
 
-		$class =  "\\Hybrid\\Breadcrumbs\\Crumb\\{$type}";
+		$class = apply_filters(
+			"hybrid/breadcrumbs/crumb/{$type}",
+			"\\Hybrid\\Breadcrumbs\\Crumb\\{$type}"
+		);
 
 		$this->crumbs[] = new $class( $this, $data );
 	}
