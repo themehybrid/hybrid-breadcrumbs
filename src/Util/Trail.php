@@ -33,7 +33,33 @@ class Trail {
 	 */
 	public static function breadcrumbs( array $args = [] ) {
 
-		return ( new Breadcrumbs( $args ) )->make();
+		return new Breadcrumbs( $args );
+	}
+
+	/**
+	 * Returns a new breadcrumbs object after calling its `make()` method.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @param  array  $args
+	 * @return Breadcrumbs
+	 */
+	public static function make( array $args = [] ) {
+
+		return static::breadcrumbs( $args )->make();
+	}
+
+	/**
+	 * Returns an array of `\Hybrid\Breadcrumbs\Contracts\Crumb` objects.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @param  array  $args
+	 * @return array
+	 */
+	public static function all( array $args = [] ) {
+
+		return static::make( $args )->all();
 	}
 
 	/**
@@ -46,7 +72,7 @@ class Trail {
 	 */
 	public static function display( array $args = [] ) {
 
-		static::breadcrumbs( $args )->display();
+		static::make( $args )->display();
 	}
 
 	/**
@@ -59,6 +85,6 @@ class Trail {
 	 */
 	public static function render( array $args = [] ) {
 
-		return static::breadcrumbs( $args )->render();
+		return static::make( $args )->render();
 	}
 }

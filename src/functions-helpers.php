@@ -29,6 +29,32 @@ function breadcrumbs( array $args = [] ) {
 }
 
 /**
+ * Returns a new breadcrumbs object after calling its `make()` method.
+ *
+ * @since  1.0.0
+ * @access public
+ * @param  array  $args
+ * @return Breadcrumbs
+ */
+function make( array $args = [] ) {
+
+	return Trail::make( $args );
+}
+
+/**
+ * Returns an array of `\Hybrid\Breadcrumbs\Contracts\Crumb` objects.
+ *
+ * @since  1.0.0
+ * @access public
+ * @param  array  $args
+ * @return array
+ */
+function all( array $args = [] ) {
+
+	return Trail::all( $args );
+}
+
+/**
  * Renders the breadcrumb trail output.
  *
  * @since  1.0.0

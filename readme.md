@@ -62,8 +62,14 @@ _Note that the plugin's namespace is `Hybrid\Breadcrumbs`.  If you're working wi
 All of the primary functions you might use follow the same parameter pattern (see parameters below).  Of course, all of these functions are under the `Hybrid\Breadcrumbs` namespace.
 
 ```php
-// Returns an instance of the Breadcrumbs class.
+// Returns a new instance of the Breadcrumbs class.
 breadcrumbs( array $args = [] );
+
+// Makes a new breadcrumbs object and returns it.
+make( array $args = [] );
+
+// Returns an array of Crumb objects.
+all( array $args = [] );
 
 // Renders the HTML output of the breadcrumb trail if it exists.
 display( array $args = [] );
@@ -77,8 +83,14 @@ render( array $args = [] );
 If you prefer to work with static classes instead of functions, you can use the `Hybrid\Breadcrumbs\Util\Trail` class.
 
 ```php
-// Returns an instance of the Breadcrumbs class.
+// Returns a new instance of the Breadcrumbs class.
 Trail::breadcrumbs( array $args = [] );
+
+// Makes a new breadcrumbs object and returns it.
+Trail::make( array $args = [] );
+
+// Returns an array of Crumb objects.
+Trail::all( array $args = [] );
 
 // Renders the HTML output of the breadcrumb trail if it exists.
 Trail::display( array $args = [] );
