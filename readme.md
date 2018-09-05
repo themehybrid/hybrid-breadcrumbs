@@ -47,7 +47,7 @@ If you're creating a theme using the [Hybrid Core framework](https://github.com/
 
 ### Usage
 
-Most developers will want to utilize the `Hybrid\Breadrumbs\Trail` class.  It is a static wrapper class that essentially acts as _syntantic sugar_ for use in theme templates.
+Most developers will want to utilize the `Hybrid\Breadrumbs\Trail` class.  It is a static wrapper class that essentially acts as _syntactic sugar_ for use in theme templates.
 
 Typically, a call like the following would go into your theme's `header.php` template but can be used anywhere you want to show the breadcrumb trail.
 
