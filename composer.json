@@ -8,7 +8,7 @@
 		{
 			"name"     : "Justin Tadlock",
 			"email"    : "justintadlock@gmail.com",
-			"homepage" : "http://justintadlock.com",
+			"homepage" : "https://themehybrid.com",
 			"role"     : "Developer"
 		}
 	],
@@ -17,9 +17,9 @@
 		"forum"  : "https://themehybrid.com/board/topics"
 	},
 	"autoload"    : {
-		"files" : [
-			"src/bootstrap-breadcrumbs.php"
-		]
+		"psr-4" : {
+			"Hybrid\\Breadcrumbs\\" : "src/"
+		}
 	},
 	"require"     : {
 		"php" : ">=5.6"

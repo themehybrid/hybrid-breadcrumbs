@@ -11,8 +11,6 @@ This project was [originally launched in 2009](http://justintadlock.com/archives
 * PHP 5.6+ (preferably 7+)
 * [Composer](https://getcomposer.org/) for managing PHP dependencies.
 
-Technically, you could make this work without Composer by directly downloading and dropping the package into your theme.  However, using Composer is ideal and the supported method for using this project.
-
 ## Documentation
 
 The following docs are written with theme authors in mind because that'll be the most common use case.  If including in a plugin, it shouldn't be much different.
@@ -49,59 +47,61 @@ If you're creating a theme using the [Hybrid Core framework](https://github.com/
 
 ### Usage
 
-Hybrid Breadcrumbs has a few functions, but the primary function that you'll want to use is `display()`. Typically, this would go into something like your theme's `header.php` template but can be used anywhere you want to show the breadcrumb trail.  The function call would look like this:
+Most developers will want to utilize the `Hybrid\Breadrumbs\Trail` class.  It is a static wrapper class that essentially acts as _syntantic sugar_ for use in theme templates.
 
-```
-<?php Hybrid\Breadcrumbs\display() ?>
+Typically, a call like the following would go into your theme's `header.php` template but can be used anywhere you want to show the breadcrumb trail.
+
+```php
+Hybrid\Breadcrumbs\Trail::display();
 ```
 
 _Note that the plugin's namespace is `Hybrid\Breadcrumbs`.  If you're working within another namespace, you'll want to add a `use` statement after your own namespace call or call `\Hybrid\Breadcrumbs\display()` directly.  I'll assume you know what you're doing if you're working with namespaces.  Otherwise, stick to the above._
 
-### Functions
-
-All of the primary functions you might use follow the same parameter pattern (see parameters below).  Of course, all of these functions are under the `Hybrid\Breadcrumbs` namespace.
-
-```php
-// Returns a new instance of the Breadcrumbs class.
-breadcrumbs( array $args = [] );
-
-// Makes a new breadcrumbs object and returns it.
-make( array $args = [] );
-
-// Returns an array of Crumb objects.
-all( array $args = [] );
-
-// Renders the HTML output of the breadcrumb trail if it exists.
-display( array $args = [] );
-
-// Returns the HTML output of the breadcrumb trail or an empty string.
-render( array $args = [] );
-```
-
 ### Static class
 
-If you prefer to work with static classes instead of functions, you can use the `Hybrid\Breadcrumbs\Util\Trail` class.
+The `Hybrid\Breadcrumbs\Trail` class has the following methods:
 
 ```php
-// Returns a new instance of the Breadcrumbs class.
+// Returns a new instance of the Hybrid\Breadcrumbs\Breadcrumbs class.
 Trail::breadcrumbs( array $args = [] );
 
-// Makes a new breadcrumbs object and returns it.
+// Makes a breadcrumb trail and returns an instance of the Hybrid\Breadcrumbs\Breadcrumbs.
 Trail::make( array $args = [] );
 
-// Returns an array of Crumb objects.
+// Returns an array of Hybrid\Breadcrumbs\Crumb\* objects.
 Trail::all( array $args = [] );
 
-// Renders the HTML output of the breadcrumb trail if it exists.
+// Displays the HTML output of the breadcrumb trail if it exists.
 Trail::display( array $args = [] );
 
 // Returns the HTML output of the breadcrumb trail or an empty string.
 Trail::render( array $args = [] );
 ```
 
+### Breadcrumbs class
+
+If you don't care for static classes and need to work directly with the object, that's fine too.  You can create and use a the `Breadcrumbs` object like so:
+
+```php
+// Create a new Breadcrumbs object.
+$trail = new \Hybrid\Breadcrumbs\Breadcrumbs( array $args = [] );
+
+// Makes the breadcrumb trail.
+$trail->make();
+
+// Returns an array of Hybrid\Breadcrumbs\Crumb\* objects.
+$trail->all();
+
+// Displays the HTML output of the breadcrumb trail if it exists.
+$trail->display();
+
+// Returns the HTML output of the breadcrumb trail or an empty string.
+$trail->render();
+```
+
 ### Parameters
 
-The function accepts an single parameter, which an array of optional arguments for setting up the breadcrumb trail.  The following is a list of all the available options (see below for defaults).
+The `Breadcrumbs` class and the `Trail` class methods all accept a single parameter, which an array of optional arguments for setting up the breadcrumb trail.  The following is a list of all the available options (see below for defaults).
 
 * `labels` - An array of labels.
 * `post_taxonomy` - An array of taxonomies to show for single posts based on post type.

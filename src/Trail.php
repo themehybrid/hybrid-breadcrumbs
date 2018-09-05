@@ -2,7 +2,8 @@
 /**
  * Trail class.
  *
- * A static class to offer easy-to-use methods for creating a breadcrumb trail.
+ * A static helper class that works as an easy-to-use wrapper for the
+ * `Breadcrumbs` class.
  *
  * @package   HybridBreadcrumbs
  * @author    Justin Tadlock <justintadlock@gmail.com>
@@ -11,9 +12,7 @@
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-namespace Hybrid\Breadcrumbs\Util;
-
-use Hybrid\Breadcrumbs\Core\Trail as Breadcrumbs;
+namespace Hybrid\Breadcrumbs;
 
 /**
  * Trail class.

@@ -11,9 +11,9 @@
  * @license   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-namespace Hybrid\Breadcrumbs\Core;
+namespace Hybrid\Breadcrumbs;
 
-use Hybrid\Breadcrumbs\Contracts\Breadcrumbs;
+use Hybrid\Breadcrumbs\Contracts\Breadcrumbs as BreadcrumbsContract;
 
 /**
  * Breadcrumbs class.
@@ -21,7 +21,7 @@ use Hybrid\Breadcrumbs\Contracts\Breadcrumbs;
  * @since  1.0.0
  * @access public
  */
-class Trail implements Breadcrumbs {
+class Breadcrumbs implements BreadcrumbsContract {
 
 	/**
 	 * The parsed arguments passed into the class.
