@@ -8,7 +8,8 @@ This project was [originally launched in 2009](http://justintadlock.com/archives
 
 ## Requirements
 
-* PHP 5.6+ (preferably 7+)
+* WordPress 4.9+.
+* PHP 5.6+ (preferably 7+).
 * [Composer](https://getcomposer.org/) for managing PHP dependencies.
 
 ## Documentation
@@ -86,7 +87,7 @@ If you don't care for static classes and need to work directly with the object, 
 // Create a new Breadcrumbs object.
 $trail = new \Hybrid\Breadcrumbs\Breadcrumbs( array $args = [] );
 
-// Makes the breadcrumb trail.
+// Makes the breadcrumb trail and returns an instance of the object.
 $trail->make();
 
 // Returns an array of Hybrid\Breadcrumbs\Crumb\* objects.
@@ -181,3 +182,9 @@ $defaults = [
 	'post' => 'category'
 ];
 ```
+
+## Copyright and License
+
+This project is licensed under the [GNU GPL](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html), version 2 or later.
+
+2018 &copy; [Justin Tadlock](http://justintadlock.com).
