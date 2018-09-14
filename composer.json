@@ -1,6 +1,6 @@
 {
 	"name"        : "justintadlock/hybrid-breadcrumbs",
-	"description" : "The tastiest breadrumbs. Mix with anything.",
+	"description" : "A powerful breadcrumb script for inclusion with WordPress themes.",
 	"keywords"    : [ "wordpress" ],
 	"homepage"    : "https://github.com/justintadlock/hybrid-breadcrumbs",
 	"license"     : "GPL-2.0-or-later",
