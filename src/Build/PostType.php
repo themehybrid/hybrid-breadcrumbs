@@ -38,6 +38,7 @@ class PostType extends Base {
 	 * @return void
 	 */
 	public function make() {
+		global $wp_rewrite;
 
 		if ( ! post_type_exists( $this->post_type ) ) {
 			return;
@@ -52,9 +53,17 @@ class PostType extends Base {
 			// Add post crumb if we have a posts page.
 			if ( 'posts' !== $show_on_front && 0 < $post_id ) {
 
-				$this->breadcrumbs->crumb( 'Post', [
-					'post' => get_post( $post_id )
-				] );
+				$post = get_post( $post_id );
+
+				// If the posts page is the same as the rewrite
+				// front path, we should've already handled that
+				// scenario at this point.
+				if ( trim( $wp_rewrite->front, '/' ) !== $post->post_name ) {
+
+					$this->breadcrumbs->crumb( 'Post', [
+						'post' => $post
+					] );
+				}
 			}
 
 			return;

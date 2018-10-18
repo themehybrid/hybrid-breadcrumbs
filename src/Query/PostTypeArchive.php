@@ -37,9 +37,6 @@ class PostTypeArchive extends Base {
 		// Add site home crumb.
 		$this->breadcrumbs->crumb( 'Home' );
 
-		// Build rewrite front crumbs.
-		$this->breadcrumbs->build( 'RewriteFront' );
-
 		// Get the post type object.
 		$type = get_post_type_object( get_query_var( 'post_type' ) );
 

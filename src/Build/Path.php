@@ -55,6 +55,9 @@ class Path extends Base {
 		// If the path is a post, run the parent crumbs and bail early.
 		if ( $post ) {
 			$this->breadcrumbs->build( 'PostAncestors', [ 'post' => $post ] );
+
+			$this->breadcrumbs->crumb( 'Post', [ 'post' => $post ] );
+
 			return;
 		}
 
@@ -74,11 +77,15 @@ class Path extends Base {
 				// Get the parent post by the given path.
 				$post = get_page_by_path( $slug );
 
-				// If a parent post is found, set the $post_id
+				// If a parent post is found, build the crumbs
 				// and break out of the loop.
 				if ( ! empty( $post ) && 0 < $post->ID ) {
 
 					$this->breadcrumbs->build( 'PostAncestors', [
+						'post' => $post
+					] );
+
+					$this->breadcrumbs->crumb( 'Post', [
 						'post' => $post
 					] );
 
