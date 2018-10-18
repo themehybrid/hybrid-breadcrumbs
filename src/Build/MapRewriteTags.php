@@ -91,7 +91,7 @@ class MapRewriteTags extends Base {
 
 			// If using the %category% tag, add a link to the first
 			// category archive to match permalinks.
-			} elseif ( taxonomy_exists( trim( $tag, '%' ) ) && $tag !== $this->breadcrumbs->postType( $this->post->post_type ) ) {
+		} elseif ( taxonomy_exists( trim( $tag, '%' ) ) && $tag !== $this->breadcrumbs->postTaxonomy( $this->post->post_type ) ) {
 
 				// Build post terms crumbs.
 				$this->breadcrumbs->build( 'PostTerms', [
