@@ -40,7 +40,8 @@ class PostAncestors extends Base {
 	 */
 	public function make() {
 
-		$post_id = $this->post->post_parent;
+		$post    = $this->post;
+		$post_id = $post->post_parent;
 		$parents = [];
 
 		while ( $post_id ) {
