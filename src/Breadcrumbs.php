@@ -320,7 +320,8 @@ class Breadcrumbs implements BreadcrumbsContract {
 
 		$class = apply_filters(
 			"hybrid/breadcrumbs/query/{$type}",
-			"\\Hybrid\\Breadcrumbs\\Query\\{$type}"
+			"\\Hybrid\\Breadcrumbs\\Query\\{$type}",
+			$data
 		);
 
 		$query = new $class( $this, $data );
@@ -341,7 +342,8 @@ class Breadcrumbs implements BreadcrumbsContract {
 
 		$class = apply_filters(
 			"hybrid/breadcrumbs/build/{$type}",
-			"\\Hybrid\\Breadcrumbs\\Build\\{$type}"
+			"\\Hybrid\\Breadcrumbs\\Build\\{$type}",
+			$data
 		);
 
 		$build = new $class( $this, $data );
@@ -362,7 +364,8 @@ class Breadcrumbs implements BreadcrumbsContract {
 
 		$class = apply_filters(
 			"hybrid/breadcrumbs/crumb/{$type}",
-			"\\Hybrid\\Breadcrumbs\\Crumb\\{$type}"
+			"\\Hybrid\\Breadcrumbs\\Crumb\\{$type}",
+			$data
 		);
 
 		$this->crumbs[] = new $class( $this, $data );
