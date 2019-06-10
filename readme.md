@@ -56,7 +56,7 @@ Typically, a call like the following would go into your theme's `header.php` tem
 Hybrid\Breadcrumbs\Trail::display();
 ```
 
-_Note that the plugin's namespace is `Hybrid\Breadcrumbs`.  If you're working within another namespace, you'll want to add a `use` statement after your own namespace call or call `\Hybrid\Breadcrumbs\display()` directly.  I'll assume you know what you're doing if you're working with namespaces.  Otherwise, stick to the above._
+_Note that the plugin's namespace is `Hybrid\Breadcrumbs`.  If you're working within another namespace, you'll want to add a `use` statement after your own namespace call or call `\Hybrid\Breadcrumbs\Trail::display()` directly.  I'll assume you know what you're doing if you're working with namespaces.  Otherwise, stick to the above._
 
 ### Static class
 
@@ -187,4 +187,4 @@ $defaults = [
 
 This project is licensed under the [GNU GPL](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html), version 2 or later.
 
-2018 &copy; [Justin Tadlock](http://justintadlock.com).
+2018-2019 &copy; [Justin Tadlock](http://justintadlock.com).
