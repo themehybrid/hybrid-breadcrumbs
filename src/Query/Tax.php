@@ -22,6 +22,15 @@ namespace Hybrid\Breadcrumbs\Query;
 class Tax extends Base {
 
 	/**
+	 * Term object.
+	 *
+	 * @since  1.2.0
+	 * @access protected
+	 * @var    \WP_Term
+	 */
+	protected $term;
+
+	/**
 	 * Builds the breadcrumbs.
 	 *
 	 * @since  1.0.0
@@ -30,7 +39,7 @@ class Tax extends Base {
 	 */
 	public function make() {
 
-		$term = get_queried_object();
+		$term = $this->term ?: get_queried_object();
 
 		// Build network crumbs.
 		$this->breadcrumbs->build( 'Network' );

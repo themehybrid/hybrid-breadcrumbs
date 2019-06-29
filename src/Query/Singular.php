@@ -22,6 +22,15 @@ namespace Hybrid\Breadcrumbs\Query;
 class Singular extends Base {
 
 	/**
+	 * Post object.
+	 *
+	 * @since  1.2.0
+	 * @access protected
+	 * @var    \WP_Post
+	 */
+	protected $post;
+
+	/**
 	 * Builds the breadcrumbs.
 	 *
 	 * @since  1.0.0
@@ -30,7 +39,7 @@ class Singular extends Base {
 	 */
 	public function make() {
 
-		$post = get_queried_object();
+		$post = $this->post ?: get_queried_object();
 
 		// Build network crumbs.
 		$this->breadcrumbs->build( 'Network' );

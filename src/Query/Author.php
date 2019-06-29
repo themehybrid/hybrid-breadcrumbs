@@ -24,6 +24,15 @@ use WP_User;
 class Author extends Base {
 
 	/**
+	 * User object.
+	 *
+	 * @since  1.2.0
+	 * @access protected
+	 * @var    \WP_User
+	 */
+	protected $user;
+
+	/**
 	 * Builds the breadcrumbs.
 	 *
 	 * @since  1.0.0
@@ -32,6 +41,8 @@ class Author extends Base {
 	 */
 	public function make() {
 		global $wp_rewrite;
+
+		$user = $this->user ?: new WP_User( get_query_var( 'author' ) );
 
 		// Build network crumbs.
 		$this->breadcrumbs->build( 'Network' );
@@ -51,8 +62,6 @@ class Author extends Base {
 		}
 
 		// Add author crumb.
-		$this->breadcrumbs->crumb( 'Author', [
-			'user' => new WP_User( get_query_var( 'author' ) )
-		] );
+		$this->breadcrumbs->crumb( 'Author', [ 'user' => $user ] );
 	}
 }

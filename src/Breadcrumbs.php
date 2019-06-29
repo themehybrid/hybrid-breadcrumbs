@@ -66,7 +66,10 @@ class Breadcrumbs implements BreadcrumbsContract {
 			'container_class' => 'breadcrumbs',
 			'title_class'     => 'breadcrumbs__title',
 			'list_class'      => 'breadcrumbs__trail',
-			'item_class'      => 'breadcrumbs__crumb'
+			'item_class'      => 'breadcrumbs__crumb',
+			'post'            => null,
+			'term'            => null,
+			'user'            => null
 		];
 
 		$this->args = wp_parse_args( $args, $defaults );
@@ -293,9 +296,20 @@ class Breadcrumbs implements BreadcrumbsContract {
 	 */
 	public function make() {
 
+		// Call the query class associated with an object passed in.
+		if ( $this->option( 'post' ) ) {
+			$this->query( 'Singular', [ 'post' => $this->option( 'post' ) ] );
+
+		} elseif ( $this->option( 'term' ) ) {
+			$this->query( 'Tax', [ 'term' => $this->option( 'term' ) ] );
+
+		} elseif ( $this->option( 'user' ) ) {
+			$this->query( 'Author', [ 'user' => $this->option( 'user' ) ] );
+		}
+
 		// This may not follow any sort of standards-based code
 		// formatting rules, but you can damn well read it better!
-		    if ( is_front_page() ) { $this->query( 'FrontPage' ); }
+		elseif ( is_front_page() ) { $this->query( 'FrontPage' ); }
 		elseif ( is_home()       ) { $this->query( 'Home'      ); }
 		elseif ( is_singular()   ) { $this->query( 'Singular'  ); }
 		elseif ( is_archive()    ) { $this->query( 'Archive'   ); }
