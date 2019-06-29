@@ -23,6 +23,24 @@ namespace Hybrid\Breadcrumbs\Query;
 class PostTypeArchive extends Base {
 
 	/**
+	 * Post type object.
+	 *
+	 * @since  1.2.0
+	 * @access protected
+	 * @var    \WP_Post_Type
+	 */
+	protected $post_type;
+
+	/**
+	 * User object.
+	 *
+	 * @since  1.2.0
+	 * @access protected
+	 * @var    \WP_User
+	 */
+	protected $user;
+
+	/**
 	 * Builds the breadcrumbs.
 	 *
 	 * @since  1.0.0
@@ -31,14 +49,13 @@ class PostTypeArchive extends Base {
 	 */
 	public function make() {
 
+		$type = $this->post_type ?: get_post_type_object( get_query_var( 'post_type' ) );
+
 		// Build network crumbs.
 		$this->breadcrumbs->build( 'Network' );
 
 		// Add site home crumb.
 		$this->breadcrumbs->crumb( 'Home' );
-
-		// Get the post type object.
-		$type = get_post_type_object( get_query_var( 'post_type' ) );
 
 		if ( false !== $type->rewrite ) {
 
@@ -69,10 +86,10 @@ class PostTypeArchive extends Base {
 		// If viewing a post type archive by author.
 		if ( is_author() ) {
 
+			$user = $this->user ?: new WP_User( get_query_var( 'author' ) );
+
 			// Add author crumb.
-			$this->breadcrumbs->crumb( 'Author', [
-				'user' => new WP_User( get_query_var( 'author' ) )
-			] );
+			$this->breadcrumbs->crumb( 'Author', [ 'user' => $user ] );
 		}
 
 		// Build paged crumbs.

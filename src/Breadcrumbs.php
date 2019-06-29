@@ -68,6 +68,7 @@ class Breadcrumbs implements BreadcrumbsContract {
 			'list_class'      => 'breadcrumbs__trail',
 			'item_class'      => 'breadcrumbs__crumb',
 			'post'            => null,
+			'post_type'       => null,
 			'term'            => null,
 			'user'            => null
 		];
@@ -299,6 +300,9 @@ class Breadcrumbs implements BreadcrumbsContract {
 		// Call the query class associated with an object passed in.
 		if ( $this->option( 'post' ) ) {
 			$this->query( 'Singular', [ 'post' => $this->option( 'post' ) ] );
+
+		} elseif ( $this->option( 'post_type' ) ) {
+			$this->query( 'PostTypeArchive', [ 'post_type' => $this->option( 'post_type' ) ] );
 
 		} elseif ( $this->option( 'term' ) ) {
 			$this->query( 'Tax', [ 'term' => $this->option( 'term' ) ] );
