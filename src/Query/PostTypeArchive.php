@@ -14,6 +14,8 @@
 
 namespace Hybrid\Breadcrumbs\Query;
 
+use Hybrid\Breadcrumbs\Crumb\PostType;
+
 /**
  * Post type archive query sub-class.
  *
@@ -51,6 +53,8 @@ class PostTypeArchive extends Base {
 
 		$type = $this->post_type ?: get_post_type_object( get_query_var( 'post_type' ) );
 
+		$done_post_type = false;
+
 		// Build network crumbs.
 		$this->breadcrumbs->build( 'Network' );
 
@@ -66,15 +70,22 @@ class PostTypeArchive extends Base {
 
 			// If there's a rewrite slug, check for parents.
 			if ( ! empty( $type->rewrite['slug'] ) ) {
+				$this->breadcrumbs->build( 'Path', [ 'path' => $type->rewrite['slug'] ] );
 
-				$this->breadcrumbs->build( 'Path', [
-					'path' => $type->rewrite['slug']
-				] );
+				// Check if we've added a post type crumb.
+				foreach ( $this->breadcrumbs->all() as $crumb ) {
+					if ( $crumb instanceof PostType ) {
+						$done_post_type = true;
+						break;
+					}
+				}
 			}
 		}
 
 		// Add post type crumb.
-		$this->breadcrumbs->crumb( 'PostType', [ 'post_type' => $type ] );
+		if ( ! $done_post_type ) {
+			$this->breadcrumbs->crumb( 'PostType', [ 'post_type' => $type ] );
+		}
 
 		// If viewing a search page for the post type archive.
 		if ( is_search() ) {

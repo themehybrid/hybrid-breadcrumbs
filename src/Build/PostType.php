@@ -26,7 +26,7 @@ class PostType extends Base {
 	 *
 	 * @since  1.0.0
 	 * @access protected
-	 * @var    string
+	 * @var    \WP_Post_Type
 	 */
 	protected $post_type = '';
 
@@ -40,12 +40,16 @@ class PostType extends Base {
 	public function make() {
 		global $wp_rewrite;
 
-		if ( ! post_type_exists( $this->post_type ) ) {
+		$type = is_string( $this->post_type )
+		        ? get_post_type_object( $this->post_type )
+			: $this->post_type;
+
+		if ( ! $type ) {
 			return;
 		}
 
 		// If this the post type is `post`, add the posts page and bail.
-		if ( 'post' === $this->post_type ) {
+		if ( 'post' === $type->name ) {
 
 			$show_on_front = get_option( 'show_on_front'  );
 			$post_id       = get_option( 'page_for_posts' );
@@ -70,8 +74,6 @@ class PostType extends Base {
 		}
 
 		// Add post type crumb.
-		$this->breadcrumbs->crumb( 'PostType', [
-			'post_type' => get_post_type_object( $this->post_type )
-		] );
+		$this->breadcrumbs->crumb( 'PostType', [ 'post_type' => $type ] );
 	}
 }

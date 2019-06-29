@@ -14,6 +14,8 @@
 
 namespace Hybrid\Breadcrumbs\Build;
 
+use Hybrid\Breadcrumbs\Crumb\PostType;
+
 /**
  * Post hierarchy build sub-class.
  *
@@ -59,8 +61,8 @@ class PostHierarchy extends Base {
 			return;
 		}
 
-		// Get the rewrite variable.
-		$rewrite = $type->rewrite;
+		$rewrite        = $type->rewrite;
+		$done_post_type = false;
 
 		// If the post type has rewrite rules.
 		if ( $rewrite ) {
@@ -73,15 +75,21 @@ class PostHierarchy extends Base {
 
 			// If there's a path, check for parents.
 			if ( $rewrite['slug'] ) {
-
 				$this->breadcrumbs->build( 'Path', [ 'path' => $rewrite['slug'] ] );
+
+				// Check if we've added a post type crumb.
+				foreach ( $this->breadcrumbs->all() as $crumb ) {
+					if ( $crumb instanceof PostType ) {
+						$done_post_type = true;
+						break;
+					}
+				}
 			}
 		}
 
-		// If there's an archive page, add it to the trail.
-		if ( $type->has_archive ) {
-
-			$this->breadcrumbs->build( 'PostType', [ 'post_type' => $type->name ] );
+		// Fall back to the post type crumb if not getting from path.
+		if ( ! $done_post_type && $type->has_archive ) {
+			$this->breadcrumbs->build( 'PostType', [ 'post_type' => $type ] );
 		}
 
 		// Map the rewrite tags if there's a `%` in the slug.

@@ -13,6 +13,7 @@
 
 namespace Hybrid\Breadcrumbs\Build;
 
+use Hybrid\Breadcrumbs\Crumb\PostType;
 use Hybrid\Breadcrumbs\Util\Helpers;
 
 /**
@@ -60,41 +61,19 @@ class Term extends Base {
 			// Build path crumbs.
 			$this->breadcrumbs->build( 'Path', [ 'path' => $path ] );
 
-			// We need to split the string to search for post type
-			// slugs that may be a part of the taxonomy slug.
-			$matches = explode( '/', $path );
-
-			// If matches are found for the path.
-			if ( $matches ) {
-
-				// Reverse the array of matches to search for
-				// post types in the proper order.
-				$matches = array_reverse( $matches );
-
-				// Loop through each of the path matches.
-				foreach ( $matches as $slug ) {
-
-					// Get post types that match the rewrite slug.
-					$types = Helpers::getPostTypesBySlug( $slug );
-
-					if ( $types ) {
-
-						$this->breadcrumbs->build( 'PostType', [
-							'post_type' => $types[0]
-						] );
-
-						$done_post_type = true;
-						break;
-					}
+			// Check if we've added a post type crumb.
+			foreach ( $this->breadcrumbs->all() as $crumb ) {
+				if ( $crumb instanceof PostType ) {
+					$done_post_type = true;
+					break;
 				}
 			}
 		}
 
-		// If there's a single post type for the taxonomy, use it.
+		// If the taxonomy has a single post type.
 		if ( ! $done_post_type && 1 === count( $taxonomy->object_type ) ) {
-
 			$this->breadcrumbs->build( 'PostType', [
-				'post_type' => $taxonomy->object_type[0]
+				'post_type' => get_post_type_object( $taxonomy->object_type[0] )
 			] );
 		}
 
