@@ -226,7 +226,8 @@ class Breadcrumbs implements BreadcrumbsContract {
 				} else {
 
 					$item = sprintf(
-						'<span itemprop="item">%s</span>',
+						'<span itemscope itemid="%s" itemtype="https://schema.org/WebPage" itemprop="item">%s</span>',
+						esc_url( $url ),
 						$label
 					);
 				}
@@ -242,10 +243,11 @@ class Breadcrumbs implements BreadcrumbsContract {
 
 				// Build the list item.
 				$list .= sprintf(
-					'<%1$s class="%2$s" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">%3$s</%1$s>',
+					'<%1$s class="%2$s" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">%3$s<meta itemprop="position" content="%4$s"/></%1$s>',
 					tag_escape( $this->option( 'item_tag' ) ),
 					esc_attr( join( ' ', $classes ) ),
-					$item
+					$item,
+					$i
 				);
 
 				++$i;
