@@ -1,5 +1,5 @@
 {
-	"name"        : "justintadlock/hybrid-breadcrumbs",
+	"name"        : "themehybrid/hybrid-breadcrumbs",
 	"description" : "A powerful breadcrumb script for inclusion with WordPress themes.",
 	"keywords"    : [ "wordpress" ],
 	"homepage"    : "https://github.com/justintadlock/hybrid-breadcrumbs",
@@ -13,7 +13,7 @@
 		}
 	],
 	"support"     : {
-		"issues" : "https://github.com/justintadlock/hybrid-breadcrumbs/issues",
+		"issues" : "https://github.com/themehybrid/hybrid-breadcrumbs/issues",
 		"forum"  : "https://themehybrid.com/board/topics"
 	},
 	"autoload"    : {
