@@ -173,7 +173,7 @@ class Breadcrumbs implements BreadcrumbsContract {
 	 */
 	public function render() {
 
-		$html = $list = $title = '';
+		$html = $container = $list = $title = '';
 
 		// Get an array of all the available breadcrumbs from the builder.
 		$crumbs = $this->all();
@@ -272,16 +272,20 @@ class Breadcrumbs implements BreadcrumbsContract {
 				);
 			}
 
-			// Build out the final breadcrumbs trail HTML.
-			$html = sprintf(
-				'<%1$s class="%2$s" role="navigation" aria-label="%3$s" itemprop="breadcrumb">%4$s%5$s</%1$s>',
-				tag_escape( $this->option( 'container_tag' ) ),
-				esc_attr( $this->option( 'container_class' ) ),
-				esc_attr( $this->label( 'aria_label' ) ),
-				$title,
-				$list
-			);
+			if ( $tag = $this->option( 'container_tag' ) ) {
+				$container = sprintf(
+					'<%1$s class="%2$s" role="navigation" aria-label="%3$s" itemprop="breadcrumb">%4$s</%1$s>',
+					tag_escape( $this->option( 'container_tag' ) ),
+					esc_attr( $this->option( 'container_class' ) ),
+					esc_attr( $this->label( 'aria_label' ) ),
+					'%1$s%2$s'
+				);
+			}
 
+			// Build out the final breadcrumbs trail HTML.
+			$html = sprintf( $container ?: '%1$s%2$s', $title, $list );
+
+			// Add before/after wrappers.
 			$html = $this->option( 'before' ) . $html . $this->option( 'after' );
 		}
 
