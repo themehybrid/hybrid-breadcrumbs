@@ -220,8 +220,8 @@ class Breadcrumbs implements BreadcrumbsContract {
 
 					$item = sprintf(
 						'<a href="%s" class="%s" itemprop="item">%s</a>',
-						esc_attr( $this->option( 'item_content_class' ) ),
 						esc_url( $url ),
+						esc_attr( $this->option( 'item_content_class' ) ),
 						$label
 					);
 
