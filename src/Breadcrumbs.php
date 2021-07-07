@@ -52,25 +52,26 @@ class Breadcrumbs implements BreadcrumbsContract {
 	public function __construct( array $args = [] ) {
 
 		$defaults = [
-			'labels'          => [],
-			'post_taxonomy'   => [],
-			'show_on_front'   => false,
-			'show_trail_end'  => true,
-			'network'         => false,
-			'before'          => '',
-			'after'           => '',
-			'container_tag'   => 'nav',
-			'title_tag'       => 'h2',
-			'list_tag'        => 'ul',
-			'item_tag'        => 'li',
-			'container_class' => 'breadcrumbs',
-			'title_class'     => 'breadcrumbs__title',
-			'list_class'      => 'breadcrumbs__trail',
-			'item_class'      => 'breadcrumbs__crumb',
-			'post'            => null,
-			'post_type'       => null,
-			'term'            => null,
-			'user'            => null
+			'labels'             => [],
+			'post_taxonomy'      => [],
+			'show_on_front'      => false,
+			'show_trail_end'     => true,
+			'network'            => false,
+			'before'             => '',
+			'after'              => '',
+			'container_tag'      => 'nav',
+			'title_tag'          => 'h2',
+			'list_tag'           => 'ul',
+			'item_tag'           => 'li',
+			'container_class'    => 'breadcrumbs',
+			'title_class'        => 'breadcrumbs__title',
+			'list_class'         => 'breadcrumbs__trail',
+			'item_class'         => 'breadcrumbs__crumb',
+			'item_content_class' => 'breadcrumbs__crumb-content',
+			'post'               => null,
+			'post_type'          => null,
+			'term'               => null,
+			'user'               => null
 		];
 
 		$this->args = wp_parse_args( $args, $defaults );
@@ -218,7 +219,8 @@ class Breadcrumbs implements BreadcrumbsContract {
 				if ( $url && $i !== $count  ) {
 
 					$item = sprintf(
-						'<a href="%s" itemprop="item">%s</a>',
+						'<a href="%s" class="%s" itemprop="item">%s</a>',
+						esc_attr( $this->option( 'item_content_class' ) ),
 						esc_url( $url ),
 						$label
 					);
@@ -226,7 +228,8 @@ class Breadcrumbs implements BreadcrumbsContract {
 				} else {
 
 					$item = sprintf(
-						'<span itemscope itemid="%s" itemtype="https://schema.org/WebPage" itemprop="item">%s</span>',
+						'<span class="%s" itemscope itemid="%s" itemtype="https://schema.org/WebPage" itemprop="item">%s</span>',
+						esc_attr( $this->option( 'item_content_class' ) ),
 						esc_url( $url ),
 						$label
 					);
