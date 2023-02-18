@@ -9,7 +9,7 @@ This project was [originally launched in 2009](http://justintadlock.com/archives
 ## Requirements
 
 * WordPress 4.9+.
-* PHP 5.6+ (preferably 7+).
+* PHP 7.4+ (preferably 8+).
 * [Composer](https://getcomposer.org/) for managing PHP dependencies.
 
 ## Documentation
