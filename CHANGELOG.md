@@ -2,6 +2,15 @@
 
 You can see the changes made via the [commit log](https://github.com/themehybrid/hybrid-breadcrumbs/commits/master) for the latest release.
 
+## [1.1.1] - 2023-02-18
+
+### Updated
+
+- Update copyright year
+- Update copyright author
+- Bump php version from 5.6 -> 7.4
+- Fix typo `Query\WeekArchive` to `Query\Week`
+
 ## [1.1.0] - 2019-06-10
 
 ### Added
