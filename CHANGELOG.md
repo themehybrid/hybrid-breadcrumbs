@@ -1,6 +1,6 @@
 # Change Log
 
-You can see the changes made via the [commit log](https://github.com/justintadlock/hybrid-breadcrumbs/commits/master) for the latest release.
+You can see the changes made via the [commit log](https://github.com/themehybrid/hybrid-breadcrumbs/commits/master) for the latest release.
 
 ## [1.1.0] - 2019-06-10
 

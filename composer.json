@@ -2,14 +2,14 @@
 	"name"        : "themehybrid/hybrid-breadcrumbs",
 	"description" : "A powerful breadcrumb script for inclusion with WordPress themes.",
 	"keywords"    : [ "wordpress" ],
-	"homepage"    : "https://github.com/justintadlock/hybrid-breadcrumbs",
+	"homepage"    : "https://github.com/themehybrid/hybrid-breadcrumbs",
 	"license"     : "GPL-2.0-or-later",
 	"authors"     : [
 		{
-			"name"     : "Justin Tadlock",
-			"email"    : "justintadlock@gmail.com",
-			"homepage" : "https://themehybrid.com",
-			"role"     : "Developer"
+			"name": "Theme Hybrid",
+			"email": "themehybrid@gmail.com",
+			"homepage": "https://themehybrid.com",
+			"role": "Developer"
 		}
 	],
 	"support"     : {

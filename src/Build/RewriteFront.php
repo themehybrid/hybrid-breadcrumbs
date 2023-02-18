@@ -9,9 +9,10 @@
  * types, and taxonomies may still use it.
  *
  * @package   HybridBreadcrumbs
- * @author    Justin Tadlock <justintadlock@gmail.com>
- * @copyright Copyright (c) 2018, Justin Tadlock
- * @link      https://github.com/justintadlock/hybrid-breadcrumbs
+ * @link      https://github.com/themehybrid/hybrid-breadcrumbs
+ *
+ * @author    Theme Hybrid
+ * @copyright Copyright (c) 2008 - 2023, Theme Hybrid
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
