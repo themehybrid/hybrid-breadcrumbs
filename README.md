@@ -9,7 +9,7 @@ This project was [originally launched in 2009](http://justintadlock.com/archives
 ## Requirements
 
 * WordPress 4.9+.
-* PHP 5.6+ (preferably 7+).
+* PHP 7.4+ (preferably 8+).
 * [Composer](https://getcomposer.org/) for managing PHP dependencies.
 
 ## Documentation
@@ -27,7 +27,7 @@ cd path/to/wp-content/themes/<your-theme-name>
 Then, use Composer to install the package.
 
 ```bash
-composer require justintadlock/hybrid-breadcrumbs
+composer require themehybrid/hybrid-breadcrumbs
 ```
 
 Assuming you're not already including the Composer autoload file for your theme and are shipping this as part of your theme package, you'll want something like the following bit of code in your theme's `functions.php` to autoload this package (and any others).
@@ -44,7 +44,7 @@ if ( file_exists( get_parent_theme_file_path( 'vendor/autoload.php' ) ) ) {
 
 Because this script has a few internationalized text strings within it, you'll want to overwrite the textdomain or use something like this [one theme with two textdomains trick](https://gist.github.com/justintadlock/7a605c29ae26c80878d0) (the textdomain in this project is `'hybrid-core'`).
 
-If you're creating a theme using the [Hybrid Core framework](https://github.com/justintadlock/hybrid-core), you don't have to worry about this. Hybrid Core will appropriately handle translations for you.
+If you're creating a theme using the [Hybrid Core framework](https://github.com/themehybrid/hybrid-core), you don't have to worry about this. Hybrid Core will appropriately handle translations for you.
 
 ### Usage
 
@@ -187,4 +187,4 @@ $defaults = [
 
 This project is licensed under the [GNU GPL](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html), version 2 or later.
 
-2018-2019 &copy; [Justin Tadlock](http://justintadlock.com).
+2008&thinsp;&ndash;&thinsp;2023 &copy; [Theme Hybrid](https://themehybrid.com).
