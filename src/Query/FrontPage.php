@@ -20,29 +20,32 @@ use Hybrid\Breadcrumbs\Util\Helpers;
  * Front page query sub-class.
  *
  * @since  1.0.0
+ *
  * @access public
  */
 class FrontPage extends Base {
 
-	/**
-	 * Builds the breadcrumbs.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return void
-	 */
-	public function make() {
+    /**
+     * Builds the breadcrumbs.
+     *
+     * @since  1.0.0
+     * @return void
+     *
+     * @access public
+     */
+    public function make() {
 
-		if ( $this->breadcrumbs->option( 'show_on_front' ) || Helpers::isPagedView() ) {
+        if ( $this->breadcrumbs->option( 'show_on_front' ) || Helpers::isPagedView() ) {
 
-			// Build network crumbs.
-			$this->breadcrumbs->build( 'Network' );
+            // Build network crumbs.
+            $this->breadcrumbs->build( 'Network' );
 
-			// Add site home crumb.
-			$this->breadcrumbs->crumb( 'Home' );
+            // Add site home crumb.
+            $this->breadcrumbs->crumb( 'Home' );
 
-			// Build paged crumbs.
-			$this->breadcrumbs->build( 'Paged' );
-		}
-	}
+            // Build paged crumbs.
+            $this->breadcrumbs->build( 'Paged' );
+        }
+    }
+
 }

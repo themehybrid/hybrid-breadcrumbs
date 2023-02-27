@@ -18,46 +18,51 @@ namespace Hybrid\Breadcrumbs\Crumb;
  * Year crumb sub-class.
  *
  * @since  1.0.0
+ *
  * @access public
  */
 class Year extends Base {
 
-	/**
-	 * Post object.
-	 *
-	 * @since  1.0.0
-	 * @access protected
-	 * @var    \WP_Post
-	 */
-	protected $post = null;
+    /**
+     * Post object.
+     *
+     * @since  1.0.0
+     * @var    \WP_Post
+     *
+     * @access protected
+     */
+    protected $post = null;
 
-	/**
-	 * Returns a label for the crumb.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return string
-	 */
-	public function label() {
+    /**
+     * Returns a label for the crumb.
+     *
+     * @since  1.0.0
+     * @return string
+     *
+     * @access public
+     */
+    public function label() {
 
-		return sprintf(
-			$this->breadcrumbs->label( 'archive_year' ),
-			get_the_time(
-				esc_html_x( 'Y', 'yearly archives date format', 'hybrid-core' ),
-				$this->post
-			)
-		);
-	}
+        return sprintf(
+            $this->breadcrumbs->label( 'archive_year' ),
+            get_the_time(
+                esc_html_x( 'Y', 'yearly archives date format', 'hybrid-core' ),
+                $this->post
+            )
+        );
+    }
 
-	/**
-	 * Returns a URL for the crumb.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return string
-	 */
-	public function url() {
+    /**
+     * Returns a URL for the crumb.
+     *
+     * @since  1.0.0
+     * @return string
+     *
+     * @access public
+     */
+    public function url() {
 
-		return get_year_link( get_the_time( 'Y', $this->post ) );
-	}
+        return get_year_link( get_the_time( 'Y', $this->post ) );
+    }
+
 }

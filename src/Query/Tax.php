@@ -18,43 +18,47 @@ namespace Hybrid\Breadcrumbs\Query;
  * Taxonomy query sub-class.
  *
  * @since  1.0.0
+ *
  * @access public
  */
 class Tax extends Base {
 
-	/**
-	 * Term object.
-	 *
-	 * @since  1.2.0
-	 * @access protected
-	 * @var    \WP_Term
-	 */
-	protected $term;
+    /**
+     * Term object.
+     *
+     * @since  1.2.0
+     * @var    \WP_Term
+     *
+     * @access protected
+     */
+    protected $term;
 
-	/**
-	 * Builds the breadcrumbs.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return void
-	 */
-	public function make() {
+    /**
+     * Builds the breadcrumbs.
+     *
+     * @since  1.0.0
+     * @return void
+     *
+     * @access public
+     */
+    public function make() {
 
-		$term = $this->term ?: get_queried_object();
+        $term = $this->term ?: get_queried_object();
 
-		// Build network crumbs.
-		$this->breadcrumbs->build( 'Network' );
+        // Build network crumbs.
+        $this->breadcrumbs->build( 'Network' );
 
-		// Add site home crumb.
-		$this->breadcrumbs->crumb( 'Home' );
+        // Add site home crumb.
+        $this->breadcrumbs->crumb( 'Home' );
 
-		// Build term crumbs.
-		$this->breadcrumbs->build( 'Term', [ 'term' => $term ] );
+        // Build term crumbs.
+        $this->breadcrumbs->build( 'Term', [ 'term' => $term ] );
 
-		// Add term crumb.
-		$this->breadcrumbs->crumb( 'Term', [ 'term' => $term ] );
+        // Add term crumb.
+        $this->breadcrumbs->crumb( 'Term', [ 'term' => $term ] );
 
-		// Build paged crumbs.
-		$this->breadcrumbs->build( 'Paged' );
-	}
+        // Build paged crumbs.
+        $this->breadcrumbs->build( 'Paged' );
+    }
+
 }

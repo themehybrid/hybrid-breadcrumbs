@@ -18,34 +18,38 @@ namespace Hybrid\Breadcrumbs\Crumb;
  * Minute + Hour crumb sub-class.
  *
  * @since  1.0.0
+ *
  * @access public
  */
 class MinuteHour extends Base {
 
-	/**
-	 * Post object.
-	 *
-	 * @since  1.0.0
-	 * @access protected
-	 * @var    \WP_Post
-	 */
-	protected $post = null;
+    /**
+     * Post object.
+     *
+     * @since  1.0.0
+     * @var    \WP_Post
+     *
+     * @access protected
+     */
+    protected $post = null;
 
-	/**
-	 * Returns a label for the crumb.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return string
-	 */
-	public function label() {
+    /**
+     * Returns a label for the crumb.
+     *
+     * @since  1.0.0
+     * @return string
+     *
+     * @access public
+     */
+    public function label() {
 
-		return sprintf(
-			$this->breadcrumbs->label( 'archive_minute_hour' ),
-			get_the_time(
-				esc_html_x( 'g:i a', 'minute and hour archives time format', 'hybrid-core' ),
-				$this->post
-			)
-		);
-	}
+        return sprintf(
+            $this->breadcrumbs->label( 'archive_minute_hour' ),
+            get_the_time(
+                esc_html_x( 'g:i a', 'minute and hour archives time format', 'hybrid-core' ),
+                $this->post
+            )
+        );
+    }
+
 }

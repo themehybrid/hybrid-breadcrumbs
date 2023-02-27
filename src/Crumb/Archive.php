@@ -18,19 +18,22 @@ namespace Hybrid\Breadcrumbs\Crumb;
  * Archive crumb sub-class.
  *
  * @since  1.0.0
+ *
  * @access public
  */
 class Archive extends Base {
 
-	/**
-	 * Returns a label for the crumb.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return string
-	 */
-	public function label() {
+    /**
+     * Returns a label for the crumb.
+     *
+     * @since  1.0.0
+     * @return string
+     *
+     * @access public
+     */
+    public function label() {
 
-		return $this->breadcrumbs->label( 'archives' );
-	}
+        return $this->breadcrumbs->label( 'archives' );
+    }
+
 }

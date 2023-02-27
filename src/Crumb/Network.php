@@ -18,31 +18,35 @@ namespace Hybrid\Breadcrumbs\Crumb;
  * Network crumb sub-class.
  *
  * @since  1.0.0
+ *
  * @access public
  */
 class Network extends Base {
 
-	/**
-	 * Returns a label for the crumb.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return string
-	 */
-	public function label() {
+    /**
+     * Returns a label for the crumb.
+     *
+     * @since  1.0.0
+     * @return string
+     *
+     * @access public
+     */
+    public function label() {
 
-		return $this->breadcrumbs->label( 'home' );
-	}
+        return $this->breadcrumbs->label( 'home' );
+    }
 
-	/**
-	 * Returns a URL for the crumb.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return string
-	 */
-	public function url() {
+    /**
+     * Returns a URL for the crumb.
+     *
+     * @since  1.0.0
+     * @return string
+     *
+     * @access public
+     */
+    public function url() {
 
-		return network_home_url();
-	}
+        return network_home_url();
+    }
+
 }

@@ -18,47 +18,52 @@ namespace Hybrid\Breadcrumbs\Crumb;
  * Post crumb sub-class.
  *
  * @since  1.0.0
+ *
  * @access public
  */
 class Post extends Base {
 
-	/**
-	 * Post object.
-	 *
-	 * @since  1.0.0
-	 * @access protected
-	 * @var    \WP_Post
-	 */
-	protected $post = null;
+    /**
+     * Post object.
+     *
+     * @since  1.0.0
+     * @var    \WP_Post
+     *
+     * @access protected
+     */
+    protected $post = null;
 
-	/**
-	 * Returns a label for the crumb.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return string
-	 */
-	public function label() {
+    /**
+     * Returns a label for the crumb.
+     *
+     * @since  1.0.0
+     * @return string
+     *
+     * @access public
+     */
+    public function label() {
 
-		$post_id = $this->post->ID;
+        $post_id = $this->post->ID;
 
-		if ( is_single( $post_id ) || is_page( $post_id ) || is_attachment( $post_id ) ) {
+        if ( is_single( $post_id ) || is_page( $post_id ) || is_attachment( $post_id ) ) {
 
-			return single_post_title( '', false );
-		}
+            return single_post_title( '', false );
+        }
 
-		return get_the_title( $this->post->ID );
-	}
+        return get_the_title( $this->post->ID );
+    }
 
-	/**
-	 * Returns a URL for the crumb.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return string
-	 */
-	public function url() {
+    /**
+     * Returns a URL for the crumb.
+     *
+     * @since  1.0.0
+     * @return string
+     *
+     * @access public
+     */
+    public function url() {
 
-		return get_permalink( $this->post->ID );
-	}
+        return get_permalink( $this->post->ID );
+    }
+
 }

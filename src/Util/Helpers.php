@@ -19,46 +19,50 @@ namespace Hybrid\Breadcrumbs\Util;
  * Helpers class.
  *
  * @since  1.0.0
+ *
  * @access public
  */
 class Helpers {
 
-	/**
-	 * Helper function for determining whether we're viewing a paginated page.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return bool
-	 */
-	public static function isPagedView() {
+    /**
+     * Helper function for determining whether we're viewing a paginated page.
+     *
+     * @since  1.0.0
+     * @return bool
+     *
+     * @access public
+     */
+    public static function isPagedView() {
 
-		return is_paged() || 1 < get_query_var( 'page' ) || 1 < get_query_var( 'cpage' );
-	}
+        return is_paged() || 1 < get_query_var( 'page' ) || 1 < get_query_var( 'cpage' );
+    }
 
-	/**
-	 * Gets post types by slug. This is needed because the `get_post_types()`
-	 * function doesn't exactly match the `has_archive` argument when it's
-	 * set as a string instead of a boolean.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @param  string  $slug
-	 * @return array
-	 */
-	 public static function getPostTypesBySlug( $slug ) {
+    /**
+     * Gets post types by slug. This is needed because the `get_post_types()`
+     * function doesn't exactly match the `has_archive` argument when it's
+     * set as a string instead of a boolean.
+     *
+     * @since  1.0.0
+     * @param  string $slug
+     * @return array
+     *
+     * @access public
+     */
+    public static function getPostTypesBySlug( $slug ) {
 
-		$return = [];
+        $return = [];
 
-		$post_types = get_post_types( [], 'objects' );
+        $post_types = get_post_types( [], 'objects' );
 
-		foreach ( $post_types as $type ) {
+        foreach ( $post_types as $type ) {
 
-			if ( $slug === $type->has_archive || ( true === $type->has_archive && $slug === $type->rewrite['slug'] ) ) {
+            if ( $slug === $type->has_archive || ( true === $type->has_archive && $slug === $type->rewrite['slug'] ) ) {
 
-				$return[] = $type;
-			}
-		}
+                $return[] = $type;
+            }
+        }
 
-		return $return;
-	}
+        return $return;
+    }
+
 }

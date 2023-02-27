@@ -18,21 +18,24 @@ namespace Hybrid\Breadcrumbs\Query;
  * Home query sub-class.
  *
  * @since  1.0.0
+ *
  * @access public
  */
 class Home extends Base {
 
-	/**
-	 * Builds the breadcrumbs.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return void
-	 */
-	public function make() {
+    /**
+     * Builds the breadcrumbs.
+     *
+     * @since  1.0.0
+     * @return void
+     *
+     * @access public
+     */
+    public function make() {
 
-		is_front_page()
-			? $this->breadcrumbs->query( 'FrontPage' )
-			: $this->breadcrumbs->query( 'Singular' );
-	}
+        is_front_page()
+            ? $this->breadcrumbs->query( 'FrontPage' )
+            : $this->breadcrumbs->query( 'Singular' );
+    }
+
 }

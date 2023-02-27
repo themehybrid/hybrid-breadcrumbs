@@ -18,33 +18,37 @@ namespace Hybrid\Breadcrumbs\Crumb;
  * Home crumb sub-class.
  *
  * @since  1.0.0
+ *
  * @access public
  */
 class Home extends Base {
 
-	/**
-	 * Returns a label for the crumb.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return string
-	 */
-	public function label() {
+    /**
+     * Returns a label for the crumb.
+     *
+     * @since  1.0.0
+     * @return string
+     *
+     * @access public
+     */
+    public function label() {
 
-		$network = $this->breadcrumbs->option( 'network' ) && ! is_main_site();
+        $network = $this->breadcrumbs->option( 'network' ) && ! is_main_site();
 
-		return $network ? get_bloginfo( 'name' ) : $this->breadcrumbs->label( 'home' );
-	}
+        return $network ? get_bloginfo( 'name' ) : $this->breadcrumbs->label( 'home' );
+    }
 
-	/**
-	 * Returns a URL for the crumb.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return string
-	 */
-	public function url() {
+    /**
+     * Returns a URL for the crumb.
+     *
+     * @since  1.0.0
+     * @return string
+     *
+     * @access public
+     */
+    public function url() {
 
-		return user_trailingslashit( home_url() );
-	}
+        return user_trailingslashit( home_url() );
+    }
+
 }

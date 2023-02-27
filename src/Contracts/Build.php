@@ -18,16 +18,19 @@ namespace Hybrid\Breadcrumbs\Contracts;
  * Build interface.
  *
  * @since  1.0.0
+ *
  * @access public
  */
 interface Build {
 
-	/**
-	 * Builds breadcrumbs.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return void
-	 */
-	public function make();
+    /**
+     * Builds breadcrumbs.
+     *
+     * @since  1.0.0
+     * @return void
+     *
+     * @access public
+     */
+    public function make();
+
 }

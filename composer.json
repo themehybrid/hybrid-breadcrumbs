@@ -1,10 +1,11 @@
 {
-	"name"        : "themehybrid/hybrid-breadcrumbs",
-	"description" : "A powerful breadcrumb script for inclusion with WordPress themes.",
-	"keywords"    : [ "wordpress" ],
-	"homepage"    : "https://github.com/themehybrid/hybrid-breadcrumbs",
-	"license"     : "GPL-2.0-or-later",
-	"authors"     : [
+	"name": "themehybrid/hybrid-breadcrumbs",
+	"description": "A powerful breadcrumb script for inclusion with WordPress themes.",
+	"license": "GPL-2.0-or-later",
+	"keywords": [
+		"wordpress"
+	],
+	"authors": [
 		{
 			"name": "Theme Hybrid",
 			"email": "themehybrid@gmail.com",
@@ -12,16 +13,17 @@
 			"role": "Developer"
 		}
 	],
-	"support"     : {
-		"issues" : "https://github.com/themehybrid/hybrid-breadcrumbs/issues",
-		"forum"  : "https://themehybrid.com/board/topics"
+	"homepage": "https://github.com/themehybrid/hybrid-breadcrumbs",
+	"support": {
+		"issues": "https://github.com/themehybrid/hybrid-breadcrumbs/issues",
+		"forum": "https://themehybrid.com/board/topics"
 	},
-	"autoload"    : {
-		"psr-4" : {
-			"Hybrid\\Breadcrumbs\\" : "src/"
+	"require": {
+		"php": ">=7.4"
+	},
+	"autoload": {
+		"psr-4": {
+			"Hybrid\\Breadcrumbs\\": "src/"
 		}
-	},
-	"require"     : {
-		"php" : ">=7.4"
 	}
 }

@@ -18,32 +18,35 @@ namespace Hybrid\Breadcrumbs\Query;
  * Hour query sub-class.
  *
  * @since  1.0.0
+ *
  * @access public
  */
 class Hour extends Base {
 
-	/**
-	 * Builds the breadcrumbs.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return void
-	 */
-	public function make() {
+    /**
+     * Builds the breadcrumbs.
+     *
+     * @since  1.0.0
+     * @return void
+     *
+     * @access public
+     */
+    public function make() {
 
-		// Build network crumbs.
-		$this->breadcrumbs->build( 'Network' );
+        // Build network crumbs.
+        $this->breadcrumbs->build( 'Network' );
 
-		// Add site home crumb.
-		$this->breadcrumbs->crumb( 'Home' );
+        // Add site home crumb.
+        $this->breadcrumbs->crumb( 'Home' );
 
-		// Build rewrite front crumbs.
-		$this->breadcrumbs->build( 'RewriteFront' );
+        // Build rewrite front crumbs.
+        $this->breadcrumbs->build( 'RewriteFront' );
 
-		// Add hour crumb.
-		$this->breadcrumbs->crumb( 'Hour' );
+        // Add hour crumb.
+        $this->breadcrumbs->crumb( 'Hour' );
 
-		// Build paged crumbs.
-		$this->breadcrumbs->build( 'Paged' );
-	}
+        // Build paged crumbs.
+        $this->breadcrumbs->build( 'Paged' );
+    }
+
 }

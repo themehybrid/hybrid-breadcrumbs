@@ -18,22 +18,25 @@ namespace Hybrid\Breadcrumbs\Crumb;
  * Paged crumb sub-class.
  *
  * @since  1.0.0
+ *
  * @access public
  */
 class Paged extends Base {
 
-	/**
-	 * Returns a label for the crumb.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return string
-	 */
-	public function label() {
+    /**
+     * Returns a label for the crumb.
+     *
+     * @since  1.0.0
+     * @return string
+     *
+     * @access public
+     */
+    public function label() {
 
-		return sprintf(
-			$this->breadcrumbs->label( 'paged' ),
-			number_format_i18n( absint( get_query_var( 'paged' ) ) )
-		);
-	}
+        return sprintf(
+            $this->breadcrumbs->label( 'paged' ),
+            number_format_i18n( absint( get_query_var( 'paged' ) ) )
+        );
+    }
+
 }

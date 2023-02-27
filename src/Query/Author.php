@@ -20,49 +20,53 @@ use WP_User;
  * Author query sub-class.
  *
  * @since  1.0.0
+ *
  * @access public
  */
 class Author extends Base {
 
-	/**
-	 * User object.
-	 *
-	 * @since  1.2.0
-	 * @access protected
-	 * @var    \WP_User
-	 */
-	protected $user;
+    /**
+     * User object.
+     *
+     * @since  1.2.0
+     * @var    \WP_User
+     *
+     * @access protected
+     */
+    protected $user;
 
-	/**
-	 * Builds the breadcrumbs.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return void
-	 */
-	public function make() {
-		global $wp_rewrite;
+    /**
+     * Builds the breadcrumbs.
+     *
+     * @since  1.0.0
+     * @return void
+     *
+     * @access public
+     */
+    public function make() {
+        global $wp_rewrite;
 
-		$user = $this->user ?: new WP_User( get_query_var( 'author' ) );
+        $user = $this->user ?: new WP_User( get_query_var( 'author' ) );
 
-		// Build network crumbs.
-		$this->breadcrumbs->build( 'Network' );
+        // Build network crumbs.
+        $this->breadcrumbs->build( 'Network' );
 
-		// Add site home crumb.
-		$this->breadcrumbs->crumb( 'Home' );
+        // Add site home crumb.
+        $this->breadcrumbs->crumb( 'Home' );
 
-		// Build rewrite front crumbs.
-		$this->breadcrumbs->build( 'RewriteFront' );
+        // Build rewrite front crumbs.
+        $this->breadcrumbs->build( 'RewriteFront' );
 
-		// If $author_base exists, check for parent pages.
-		if ( ! empty( $wp_rewrite->author_base ) ) {
+        // If $author_base exists, check for parent pages.
+        if ( ! empty( $wp_rewrite->author_base ) ) {
 
-			$this->breadcrumbs->build( 'Path', [
-				'page' => $wp_rewrite->author_base
-			] );
-		}
+            $this->breadcrumbs->build( 'Path', [
+                'page' => $wp_rewrite->author_base,
+            ] );
+        }
 
-		// Add author crumb.
-		$this->breadcrumbs->crumb( 'Author', [ 'user' => $user ] );
-	}
+        // Add author crumb.
+        $this->breadcrumbs->crumb( 'Author', [ 'user' => $user ] );
+    }
+
 }

@@ -18,22 +18,25 @@ namespace Hybrid\Breadcrumbs\Build;
  * Network build sub-class.
  *
  * @since  1.0.0
+ *
  * @access public
  */
 class Network extends Base {
 
-	/**
-	 * Builds the breadcrumbs.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return void
-	 */
-	public function make() {
+    /**
+     * Builds the breadcrumbs.
+     *
+     * @since  1.0.0
+     * @return void
+     *
+     * @access public
+     */
+    public function make() {
 
-		if ( is_multisite() && $this->breadcrumbs->option( 'network' ) && ! is_main_site() ) {
+        if ( is_multisite() && $this->breadcrumbs->option( 'network' ) && ! is_main_site() ) {
 
-			$this->breadcrumbs->crumb( 'Network' );
-		}
-	}
+            $this->breadcrumbs->crumb( 'Network' );
+        }
+    }
+
 }

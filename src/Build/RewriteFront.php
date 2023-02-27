@@ -22,25 +22,28 @@ namespace Hybrid\Breadcrumbs\Build;
  * Rewrite front build sub-class.
  *
  * @since  1.0.0
+ *
  * @access public
  */
 class RewriteFront extends Base {
 
-	/**
-	 * Builds the breadcrumbs.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return void
-	 */
-	public function make() {
-		global $wp_rewrite;
+    /**
+     * Builds the breadcrumbs.
+     *
+     * @since  1.0.0
+     * @return void
+     *
+     * @access public
+     */
+    public function make() {
+        global $wp_rewrite;
 
-		if ( $wp_rewrite->front ) {
+        if ( $wp_rewrite->front ) {
 
-			$this->breadcrumbs->build( 'Path', [
-				'path' => $wp_rewrite->front
-			] );
-		}
-	}
+            $this->breadcrumbs->build( 'Path', [
+                'path' => $wp_rewrite->front,
+            ] );
+        }
+    }
+
 }

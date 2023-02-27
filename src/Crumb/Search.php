@@ -18,31 +18,35 @@ namespace Hybrid\Breadcrumbs\Crumb;
  * Search crumb sub-class.
  *
  * @since  1.0.0
+ *
  * @access public
  */
 class Search extends Base {
 
-	/**
-	 * Returns a label for the crumb.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return string
-	 */
-	public function label() {
+    /**
+     * Returns a label for the crumb.
+     *
+     * @since  1.0.0
+     * @return string
+     *
+     * @access public
+     */
+    public function label() {
 
-		return sprintf( $this->breadcrumbs->label( 'search' ), get_search_query() );
-	}
+        return sprintf( $this->breadcrumbs->label( 'search' ), get_search_query() );
+    }
 
-	/**
-	 * Returns a URL for the crumb.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return string
-	 */
-	public function url() {
+    /**
+     * Returns a URL for the crumb.
+     *
+     * @since  1.0.0
+     * @return string
+     *
+     * @access public
+     */
+    public function url() {
 
-		return get_search_link();
-	}
+        return get_search_link();
+    }
+
 }

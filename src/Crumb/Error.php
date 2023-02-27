@@ -18,19 +18,22 @@ namespace Hybrid\Breadcrumbs\Crumb;
  * Error 404 crumb sub-class.
  *
  * @since  1.0.0
+ *
  * @access public
  */
 class Error extends Base {
 
-	/**
-	 * Returns a label for the crumb.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return string
-	 */
-	public function label() {
+    /**
+     * Returns a label for the crumb.
+     *
+     * @since  1.0.0
+     * @return string
+     *
+     * @access public
+     */
+    public function label() {
 
-		return $this->breadcrumbs->label( 'error_404' );
-	}
+        return $this->breadcrumbs->label( 'error_404' );
+    }
+
 }

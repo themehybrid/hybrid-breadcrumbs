@@ -18,26 +18,29 @@ namespace Hybrid\Breadcrumbs\Query;
  * Error query sub-class.
  *
  * @since  1.0.0
+ *
  * @access public
  */
 class Error extends Base {
 
-	/**
-	 * Builds the breadcrumbs.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return void
-	 */
-	public function make() {
+    /**
+     * Builds the breadcrumbs.
+     *
+     * @since  1.0.0
+     * @return void
+     *
+     * @access public
+     */
+    public function make() {
 
-		// Build network crumbs.
-		$this->breadcrumbs->build( 'Network' );
+        // Build network crumbs.
+        $this->breadcrumbs->build( 'Network' );
 
-		// Add site home crumb.
-		$this->breadcrumbs->crumb( 'Home' );
+        // Add site home crumb.
+        $this->breadcrumbs->crumb( 'Home' );
 
-		// Add 404 crumb.
-		$this->breadcrumbs->crumb( 'Error' );
-	}
+        // Add 404 crumb.
+        $this->breadcrumbs->crumb( 'Error' );
+    }
+
 }
