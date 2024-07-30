@@ -8,9 +8,10 @@
  * any taxonomy tags.
  *
  * @package   HybridBreadcrumbs
- * @author    Justin Tadlock <justintadlock@gmail.com>
- * @copyright Copyright (c) 2018, Justin Tadlock
- * @link      https://github.com/justintadlock/hybrid-breadcrumbs
+ * @link      https://github.com/themehybrid/hybrid-breadcrumbs
+ *
+ * @author    Theme Hybrid
+ * @copyright Copyright (c) 2008 - 2023, Theme Hybrid
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
@@ -22,83 +23,91 @@ use WP_User;
  * Map rewrite tags build sub-class.
  *
  * @since  1.0.0
+ *
  * @access public
  */
 class MapRewriteTags extends Base {
 
-	/**
-	 * Post object.
-	 *
-	 * @since  1.0.0
-	 * @access protected
-	 * @var    \WP_Post
-	 */
-	protected $post;
+    /**
+     * Post object.
+     *
+     * @since  1.0.0
+     * @var    \WP_Post
+     *
+     * @access protected
+     */
+    protected $post;
 
-	/**
-	 * Permalink structure or path with possible `%tag%` names in it.
-	 *
-	 * @since  1.0.0
-	 * @access protected
-	 * @var    string
-	 */
-	protected $path = '';
+    /**
+     * Permalink structure or path with possible `%tag%` names in it.
+     *
+     * @since  1.0.0
+     * @var    string
+     *
+     * @access protected
+     */
+    protected $path = '';
 
-	/**
-	 * Builds the breadcrumbs.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return void
-	 */
-	public function make() {
+    /**
+     * Builds the breadcrumbs.
+     *
+     * @since  1.0.0
+     * @return void
+     *
+     * @access public
+     */
+    public function make() {
 
-		// Trim '/' from both sides of `$this->path`.
-		$path = trim( $this->path, '/' );
+        // Trim '/' from both sides of `$this->path`.
+        $path = trim( $this->path, '/' );
 
-		// Split the $path into an array of strings.
-		$matches = explode( '/', $path );
+        // Split the $path into an array of strings.
+        $matches = explode( '/', $path );
 
-		// Bail if no matches are found.
-		if ( ! $matches ) {
-			return;
-		}
+        // Bail if no matches are found.
+        if ( ! $matches ) {
+            return;
+        }
 
-		// Loop through each of the matches, adding each to the $trail array.
-		foreach ( $matches as $tag ) {
+        // Loop through each of the matches, adding each to the $trail array.
+        foreach ( $matches as $tag ) {
 
-			// If using the %year% tag, add a link to the yearly archive.
-			if ( '%year%' == $tag ) {
+            // If using the %year% tag, add a link to the yearly archive.
+            if ( '%year%' === $tag ) {
 
-				$this->breadcrumbs->crumb( 'Year', [ 'post' => $this->post ] );
+                $this->breadcrumbs->crumb( 'Year', [ 'post' => $this->post ] );
 
-			// If using the %monthnum% tag, add a link to the monthly archive.
-			} elseif ( '%monthnum%' == $tag ) {
+                // If using the %monthnum% tag, add a link to the monthly archive.
+            } elseif ( '%monthnum%' === $tag ) {
 
-				$this->breadcrumbs->crumb( 'Month', [ 'post' => $this->post ] );
+                $this->breadcrumbs->crumb( 'Month', [ 'post' => $this->post ] );
 
-			// If using the %day% tag, add a link to the daily archive.
-			} elseif ( '%day%' == $tag ) {
+                // If using the %day% tag, add a link to the daily archive.
+            } elseif ( '%day%' === $tag ) {
 
-				$this->breadcrumbs->crumb( 'Day', [ 'post' => $this->post ] );
+                $this->breadcrumbs->crumb( 'Day', [ 'post' => $this->post ] );
 
-			// If using the %author% tag, add a link to the post author archive.
-			} elseif ( '%author%' == $tag ) {
+                // If using the %author% tag, add a link to the post author archive.
+            } elseif ( '%author%' === $tag ) {
 
-				$this->breadcrumbs->crumb( 'Author', [
-					'user' => new WP_User( $this->post->post_author )
-				] );
+                $this->breadcrumbs->crumb( 'Author', [
+                    'user' => new WP_User( $this->post->post_author ),
+                ] );
 
-			// If using the %category% tag, add a link to the first
-			// category archive to match permalinks.
-			} elseif ( taxonomy_exists( trim( $tag, '%' ) ) && $tag !== $this->breadcrumbs->postTaxonomy( $this->post->post_type ) ) {
+                // If using the %category% tag, add a link to the first
+                // category archive to match permalinks.
+            } elseif (
+                taxonomy_exists( trim( $tag, '%' ) )
+                && $tag !== $this->breadcrumbs->postTaxonomy( $this->post->post_type )
+            ) {
 
-				// Build post terms crumbs.
-				$this->breadcrumbs->build( 'PostTerms', [
-					'post'     => $this->post,
-					'taxonomy' => trim( $tag, '%' )
-				] );
-			}
-		}
-	}
+                // Build post terms crumbs.
+                $this->breadcrumbs->build( 'PostTerms', [
+                    'post'     => $this->post,
+                    'taxonomy' => trim( $tag, '%' ),
+                ] );
+            }
+        }
+    }
+
 }
